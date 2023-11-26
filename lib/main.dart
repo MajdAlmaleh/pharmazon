@@ -30,7 +30,6 @@ class Pharmazon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageCubit, String>(
-      
       builder: (context, state) {
         return MaterialApp.router(
           locale: Locale(state),
