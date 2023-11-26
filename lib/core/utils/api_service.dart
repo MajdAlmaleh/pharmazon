@@ -20,10 +20,30 @@ class ApiService {
       {required String urlEndPoint, @required String? token}) async {
     Map<String, String> headers = {};
     if (token != null) {
-      headers.addAll({'Authorization': 'Bearer $token'});
+      headers.addAll({'Authorization': '$token'});
     }
     
     final Response response = await _dio.get(urlEndPoint,
+        options: Options(headers: headers));
+
+    if (response.statusCode == 200||response.statusCode == 201) {
+      response.data;
+    } else {
+      throw Exception(
+          'there is a problem with status code ${response.statusCode}');
+    }
+  }
+  Future<dynamic> delete(
+      {required String urlEndPoint, @required String? token}) async {
+    Map<String, String> headers = {
+       'Accept':'application/json'
+    };
+    if (token != null) {
+      headers.addAll({'Authorization': '$token'});
+      //i deleted Bearer before the token
+    }
+    
+    final Response response = await _dio.delete(urlEndPoint,
         options: Options(headers: headers));
 
     if (response.statusCode == 200||response.statusCode == 201) {
@@ -38,10 +58,12 @@ class ApiService {
       {required String urlEndPoint,
       @required dynamic body,
       @required String? token}) async {
-    Map<String, String> headers = {};
+    Map<String, String> headers = {
+      'Accept':'application/json'
+    };
 
     if (token != null) {
-      headers.addAll({'Authorization': 'Bearer $token'});
+      headers.addAll({'Authorization': '$token'});
     }
 
     Response response = await _dio.post(
@@ -65,7 +87,7 @@ class ApiService {
     Map<String, String> headers = {};
     headers.addAll({'Content-Type': 'application/x-www-form-unlencoded'});
     if (token != null) {
-      headers.addAll({'Authorization': 'Bearer $token'});
+      headers.addAll({'Authorization': '$token'});
     }
 
     Response response = await _dio.put(

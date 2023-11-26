@@ -30,7 +30,7 @@ class AuthRepoImpl implements AuthRepo {
         token: null, // Replace with your token if needed
       );
 
-await storage.write(key: 'token', value: phoneNumber);
+await storage.write(key: 'token', value: response['token']);
 
       return right(response);
     } on Exception catch (e) {
@@ -61,7 +61,7 @@ await storage.write(key: 'token', value: phoneNumber);
         token: null,
         // Replace with your token if needed
       );
-      await storage.write(key: 'token', value: phoneNumber);
+      await storage.write(key: 'token', value: response['token']);
 
 
       //TODO add token to the storage;
