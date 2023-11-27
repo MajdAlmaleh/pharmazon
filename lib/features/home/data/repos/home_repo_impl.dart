@@ -13,8 +13,12 @@ class HomeRepoImpl implements HomeRepo {
     final token = await storage.read(key: 'token');
     await _apiService.delete(
       urlEndPoint: '$kBaseUrl/logout',
-      token:
-         token, // Replace with your token if needed
+      body: {
+        'api_token':token,
+      },
+      token: null
+    
+      // Replace with your token if needed
     );
 
     // Read value

@@ -12,41 +12,45 @@ class ApiService {
 // //  receiveTimeout: 3000,
 // );
 
-
-
- // final _baseUrl = 'https://192.168.2.104:8000/api/';
+  // final _baseUrl = 'https://192.168.2.104:8000/api/';
   ApiService(this._dio);
   Future<dynamic> get(
       {required String urlEndPoint, @required String? token}) async {
     Map<String, String> headers = {};
     if (token != null) {
-      headers.addAll({'Authorization': '$token'});
+      headers.addAll({'Authorization': token});
     }
-    
-    final Response response = await _dio.get(urlEndPoint,
-        options: Options(headers: headers));
 
-    if (response.statusCode == 200||response.statusCode == 201) {
+    final Response response =
+        await _dio.get(urlEndPoint, options: Options(headers: headers));
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
       response.data;
     } else {
       throw Exception(
           'there is a problem with status code ${response.statusCode}');
     }
   }
+
   Future<dynamic> delete(
-      {required String urlEndPoint, @required String? token}) async {
-    Map<String, String> headers = {
-       'Accept':'application/json'
-    };
+      {required String urlEndPoint,
+      @required dynamic body,
+      @required String? token}) async {
+    Map<String, String> headers = {'Accept': 'application/json'};
     if (token != null) {
-      headers.addAll({'Authorization': '$token'});
+      headers.addAll({'Authorization': token});
       //i deleted Bearer before the token
     }
-    
-    final Response response = await _dio.delete(urlEndPoint,
-        options: Options(headers: headers));
 
-    if (response.statusCode == 200||response.statusCode == 201) {
+    final Response response = await _dio.delete(
+      data: body,
+      urlEndPoint,
+      options: Options(
+        headers: headers,
+      ),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
       response.data;
     } else {
       throw Exception(
@@ -58,12 +62,10 @@ class ApiService {
       {required String urlEndPoint,
       @required dynamic body,
       @required String? token}) async {
-    Map<String, String> headers = {
-      'Accept':'application/json'
-    };
+    Map<String, String> headers = {'Accept': 'application/json'};
 
     if (token != null) {
-      headers.addAll({'Authorization': '$token'});
+      headers.addAll({'Authorization': token});
     }
 
     Response response = await _dio.post(
@@ -71,8 +73,8 @@ class ApiService {
       options: Options(headers: headers),
       data: body,
     );
-    if (response.statusCode == 200||response.statusCode == 201) {
-      Map<String,dynamic> data =response.data;
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> data = response.data;
       return data;
     } else {
       throw Exception(
@@ -87,7 +89,7 @@ class ApiService {
     Map<String, String> headers = {};
     headers.addAll({'Content-Type': 'application/x-www-form-unlencoded'});
     if (token != null) {
-      headers.addAll({'Authorization': '$token'});
+      headers.addAll({'Authorization': token});
     }
 
     Response response = await _dio.put(
@@ -96,7 +98,8 @@ class ApiService {
       options: Options(headers: headers),
     );
     if (response.statusCode == 200) {
-Map<String,dynamic> data =response.data;      return data;
+      Map<String, dynamic> data = response.data;
+      return data;
     } else {
       throw Exception(
           'there is a problem with status code ${response.statusCode} with body ${response.data}');

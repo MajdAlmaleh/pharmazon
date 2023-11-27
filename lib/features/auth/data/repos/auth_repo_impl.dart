@@ -7,6 +7,7 @@ import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
 import 'package:pharmazon/features/auth/data/repos/auth_repo.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiService _apiService;
@@ -16,21 +17,21 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> signInWithEmailAndPassword(
       {required String phoneNumber, required String password}) async {
-        const storage =  FlutterSecureStorage();
-   
+    const storage = FlutterSecureStorage();
+
     try {
       final response = await _apiService.post(
         urlEndPoint: '$kBaseUrl/login',
         body: {
           'phone': phoneNumber,
           'password': password,
+          'ispharmacy': UniversalPlatform.isAndroid,
+          'iswarehouse': !UniversalPlatform.isAndroid,
         },
-
-
         token: null, // Replace with your token if needed
       );
 
-await storage.write(key: 'token', value: response['token']);
+      await storage.write(key: 'token', value: response['token']);
 
       return right(response);
     } on Exception catch (e) {
@@ -46,7 +47,7 @@ await storage.write(key: 'token', value: response['token']);
       {required String username,
       required String phoneNumber,
       required String password}) async {
-                const storage =  FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
 
     try {
       final response = await _apiService.post(
@@ -55,16 +56,14 @@ await storage.write(key: 'token', value: response['token']);
           'name': username,
           'phone': phoneNumber,
           'password': password,
-          'ispharmacy': Platform.isAndroid,
-          'iswarehouse': !Platform.isAndroid,
+          'ispharmacy': UniversalPlatform.isAndroid,
+          'iswarehouse': !UniversalPlatform.isAndroid,
         },
         token: null,
         // Replace with your token if needed
       );
       await storage.write(key: 'token', value: response['token']);
 
-
-      //TODO add token to the storage;
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {

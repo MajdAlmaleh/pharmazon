@@ -43,7 +43,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
           },
           builder: (context, state) {
             if (state is AuthLoading) {
-             return const CustomLoading();
+              return const CustomLoading();
             }
             return Form(
               key: formKey,
