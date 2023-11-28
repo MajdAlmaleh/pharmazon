@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
@@ -11,7 +12,7 @@ import 'package:universal_platform/universal_platform.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiService _apiService;
-
+final TokenCubit tokenCubit = TokenCubit();
   AuthRepoImpl(this._apiService);
 
   @override
@@ -31,8 +32,7 @@ class AuthRepoImpl implements AuthRepo {
         token: null, // Replace with your token if needed
       );
 
-      await storage.write(key: 'token', value: response['token']);
-
+   await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -62,8 +62,7 @@ class AuthRepoImpl implements AuthRepo {
         token: null,
         // Replace with your token if needed
       );
-      await storage.write(key: 'token', value: response['token']);
-
+   await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
