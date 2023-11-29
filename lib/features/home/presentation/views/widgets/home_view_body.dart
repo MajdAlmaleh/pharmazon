@@ -7,8 +7,6 @@ import 'package:pharmazon/core/utils/api_service.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
 import 'package:pharmazon/core/widgets/auth_button.dart';
-import 'package:pharmazon/features/auth/data/repos/auth_repo_impl.dart';
-import 'package:pharmazon/features/home/data/repos/home_repo.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/generated/l10n.dart';
 
@@ -24,7 +22,6 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     BlocProvider.of<TokenCubit>(context).fetchSavedToken();
   }
@@ -36,17 +33,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         body: Column(
           children: [
             AuthButton(
-                // onPressed: () async {
-                //   await HomeRepoImpl(getIt<ApiService>()).logOut(token: BlocProvider.of<TokenCubit>(context).state!);
-                //   // ignore: use_build_context_synchronously
-                //   GoRouter.of(context).go(AppRouter.kWelcomeView);
-                // },
                 onPressed: () async {
-                  await HomeRepoImpl(getIt<ApiService>()).fetchClassifications(
-                      token: BlocProvider.of<TokenCubit>(context).state!);
+                  await HomeRepoImpl(getIt<ApiService>()).logOut(token: BlocProvider.of<TokenCubit>(context).state!);
                   // ignore: use_build_context_synchronously
-                  // GoRouter.of(context).go(AppRouter.kWelcomeView);
+                  GoRouter.of(context).go(AppRouter.kWelcomeView);
                 },
+                // onPressed: () async {
+                //   await HomeRepoImpl(getIt<ApiService>()).fetchClassifications(
+                //       token: BlocProvider.of<TokenCubit>(context).state!);
+                //   // ignore: use_build_context_synchronously
+                //   // GoRouter.of(context).go(AppRouter.kWelcomeView);
+                // },
                 text: 'logout'),
             AuthButton(
                 onPressed: () async {
