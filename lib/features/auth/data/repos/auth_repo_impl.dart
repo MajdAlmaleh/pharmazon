@@ -12,7 +12,7 @@ import 'package:universal_platform/universal_platform.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiService _apiService;
-final TokenCubit tokenCubit = TokenCubit();
+  final TokenCubit tokenCubit = TokenCubit();
   AuthRepoImpl(this._apiService);
 
   @override
@@ -32,7 +32,7 @@ final TokenCubit tokenCubit = TokenCubit();
         token: null, // Replace with your token if needed
       );
 
-   await tokenCubit.storeToken(response['token']);
+      await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -62,7 +62,7 @@ final TokenCubit tokenCubit = TokenCubit();
         token: null,
         // Replace with your token if needed
       );
-   await tokenCubit.storeToken(response['token']);
+      await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {

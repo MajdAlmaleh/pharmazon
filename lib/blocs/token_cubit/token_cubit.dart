@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenCubit extends Cubit<String?> {
   TokenCubit() : super(null);
+  
 
   Future<void> fetchSavedToken() async {
     const storage = FlutterSecureStorage();
@@ -22,7 +24,7 @@ class TokenCubit extends Cubit<String?> {
     const storage = FlutterSecureStorage();
     // Read value
     await storage.delete(key: 'token');
-    
+
     emit(null);
   }
 }

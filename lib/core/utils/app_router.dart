@@ -13,24 +13,18 @@ abstract class AppRouter {
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
 
-
-
-
-  static Future<GoRouter> setupRouter() async {
+  static GoRouter setupRouter(String? token)  {
     // Create storage
-    const storage =  FlutterSecureStorage();
-
-    // Read value 
-    String? token = await storage.read(key: 'token');
 
     return GoRouter(routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => token != null ? const HomeView() : const WelcomeView(),
+        builder: (context, state) =>
+            token != null ? const HomeView() : const WelcomeView(),
       ),
       GoRoute(
         path: kWelcomeView,
-        builder: (context, state) =>  const WelcomeView(),
+        builder: (context, state) => const WelcomeView(),
       ),
       GoRoute(
         path: kAuthView,
@@ -41,16 +35,13 @@ abstract class AppRouter {
           ),
         ),
       ),
-    
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) =>  const HomeView(),
       ),
     ]);
   }
 
-
-  
   // static final router = GoRouter(routes: [
   //   GoRoute(
   //     path: '/',

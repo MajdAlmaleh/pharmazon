@@ -13,6 +13,6 @@ final class AuthFailure extends AuthState {
 }
 
 final class AuthSuccess extends AuthState {
-   final String success;
+  final String success;
   AuthSuccess(this.success);
 }
