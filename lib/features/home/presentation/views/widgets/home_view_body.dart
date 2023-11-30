@@ -34,7 +34,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           children: [
             AuthButton(
                 onPressed: () async {
-                  await HomeRepoImpl(getIt<ApiService>()).logOut(token: BlocProvider.of<TokenCubit>(context).state!);
+                  await HomeRepoImpl(getIt<ApiService>()).logOut();
                   // ignore: use_build_context_synchronously
                   GoRouter.of(context).go(AppRouter.kWelcomeView);
                 },

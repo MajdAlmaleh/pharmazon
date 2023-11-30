@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
@@ -7,7 +5,6 @@ import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
 import 'package:pharmazon/features/auth/data/repos/auth_repo.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -18,11 +15,9 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> signInWithEmailAndPassword(
       {required String phoneNumber, required String password}) async {
-    const storage = FlutterSecureStorage();
-
     try {
       final response = await _apiService.post(
-        urlEndPoint: '$kBaseUrl/login',
+        url: '$kBaseUrl/login',
         body: {
           'phone': phoneNumber,
           'password': password,
@@ -47,11 +42,9 @@ class AuthRepoImpl implements AuthRepo {
       {required String username,
       required String phoneNumber,
       required String password}) async {
-    const storage = FlutterSecureStorage();
-
     try {
       final response = await _apiService.post(
-        urlEndPoint: '$kBaseUrl/users', // Replace with your register endpoint
+        url: '$kBaseUrl/users', // Replace with your register endpoint
         body: {
           'name': username,
           'phone': phoneNumber,

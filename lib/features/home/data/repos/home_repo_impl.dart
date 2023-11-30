@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/errors/failures.dart';
@@ -10,26 +11,34 @@ import 'package:pharmazon/core/utils/api_service.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService _apiService;
-  HomeRepoImpl(this._apiService);
+  final TokenCubit tokenCubit;
+
+  HomeRepoImpl(this._apiService) : tokenCubit = GetIt.instance<TokenCubit>();
   @override
-  Future<void> logOut({required String token}) async {
-  final tokenCubit = TokenCubit();
-    await _apiService.delete(
-        urlEndPoint: '$kBaseUrl/logout',
-        body: {
-          'api_token': token,
-        },
-        token: null);
-    tokenCubit.deleteSavedToken();
+   Future<void> logOut() async {
+    try {
+      await _apiService.delete(
+          urlEndPoint: '$kBaseUrl/logout',
+          body: {
+            'api_token': tokenCubit.state,
+          },
+          token: null
+
+          // Replace with your token if needed
+          );
+       tokenCubit.deleteSavedToken();
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   @override
-  Future<Either<Failure, List<ClassificationsModel>>>
-      fetchClassifications({required String token}) async {
-        //make the token with the token cubit
+  Future<Either<Failure, List<ClassificationsModel>>> fetchClassifications(
+      {required String token}) async {
+    //make the token with the token cubit
 
     try {
-      final  data = await _apiService.get(url: '$kBaseUrl/getAll', token: token);
+      final data = await _apiService.get(url: '$kBaseUrl/getAll', token: token);
       print(data);
       List<ClassificationsModel> classifications = [];
       for (var item in data) {

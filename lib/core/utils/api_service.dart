@@ -14,18 +14,19 @@ class ApiService {
 
   // final _baseUrl = 'https://192.168.2.104:8000/api/';
   ApiService(this._dio);
-  Future<dynamic> get(
-      {required String url, @required String? token}) async {
+  Future<dynamic> get({required String url, @required String? token}) async {
     Map<String, String> headers = {};
     if (token != null) {
       headers.addAll({'Authorization': token});
     }
 
-    final Response response =
-        await _dio.get(url, options: Options(headers: headers, ));
+    final Response response = await _dio.get(url,
+        options: Options(
+          headers: headers,
+        ));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-    return  response.data;
+      return response.data;
     } else {
       throw Exception(
           'there is a problem with status code ${response.statusCode}');
@@ -59,7 +60,7 @@ class ApiService {
   }
 
   Future<dynamic> post(
-      {required String urlEndPoint,
+      {required String url,
       @required dynamic body,
       @required String? token}) async {
     Map<String, String> headers = {'Accept': 'application/json'};
@@ -69,7 +70,7 @@ class ApiService {
     }
 
     Response response = await _dio.post(
-      urlEndPoint,
+      url,
       options: Options(headers: headers),
       data: body,
     );
