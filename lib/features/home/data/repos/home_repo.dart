@@ -5,6 +5,7 @@ import 'package:pharmazon/features/home/data/models/medicine_model.dart';
 
 abstract class HomeRepo {
   Future<void> logOut();
-//Future<Either<Failure, List<MedicineModel>>> fetchClassifications();
-  Future<Either<Failure, List<ClassificationsModel>>> fetchClassifications({required String token});
+  Future<Either<Failure, List<ClassificationsModel>>> fetchClassifications();
+  Future<Either<Failure, List<MedicineModel>>> fetchMedicineOfClassification(
+      {required String classification});
 }
