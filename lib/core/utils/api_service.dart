@@ -14,15 +14,19 @@ class ApiService {
 
   // final _baseUrl = 'https://192.168.2.104:8000/api/';
   ApiService(this._dio);
-  Future<dynamic> get({required String url, @required String? token}) async {
+  Future<dynamic> get({required String url, @required String? token,@required dynamic body,}) async {
     Map<String, String> headers = {};
     if (token != null) {
       headers.addAll({'Authorization': token});
     }
 
-    final Response response = await _dio.get(url,
+    final Response response = await _dio.get(
+
+      url,
+      data: body,
         options: Options(
           headers: headers,
+          
         ));
 
     if (response.statusCode == 200 || response.statusCode == 201) {

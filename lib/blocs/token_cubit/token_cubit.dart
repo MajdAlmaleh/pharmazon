@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenCubit extends Cubit<String?> {
   TokenCubit() : super(null);
-  
 
   Future<void> fetchSavedToken() async {
     const storage = FlutterSecureStorage();
@@ -19,6 +18,7 @@ class TokenCubit extends Cubit<String?> {
     await storage.write(key: 'token', value: token);
     emit(token);
   }
+
 
   Future<void> deleteSavedToken() async {
     const storage = FlutterSecureStorage();

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:pharmazon/features/home/data/models/classifications_model.dart';
+import 'package:pharmazon/core/shared_models/classifications_model.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo.dart';
 
 part 'classifications_state.dart';

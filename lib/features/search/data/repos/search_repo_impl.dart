@@ -7,43 +7,27 @@ import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/shared_models/classifications_model.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
-import 'package:pharmazon/features/home/data/repos/home_repo.dart';
+import 'package:pharmazon/features/search/data/repos/search_repo.dart';
 
-class HomeRepoImpl implements HomeRepo {
+class SearchRepoImpl implements SearchRepo {
   final ApiService _apiService;
   final TokenCubit tokenCubit;
 
-  HomeRepoImpl(this._apiService) : tokenCubit = GetIt.instance<TokenCubit>();
+  SearchRepoImpl(this._apiService) : tokenCubit = GetIt.instance<TokenCubit>();
   @override
-  Future<void> logOut() async {
-    try {
-      await _apiService.delete(
-          urlEndPoint: '$kBaseUrl/logout',
-          body: {
-            'api_token': tokenCubit.state,
-          },
-          token: null
-
-          // Replace with your token if needed
-          );
-      await tokenCubit.deleteSavedToken();
-    } on Exception catch (e) {
-      print(e);
-    }
-  }
-
   @override
-  Future<Either<Failure, List<ClassificationsModel>>>
-      fetchClassifications() async {
+  Future<Either<Failure, List<ClassificationsModel>>> searchByClassifications(
+      {required String classification}) async {
     //make the token with the token cubit
-     await tokenCubit.fetchSavedToken();
-   
+
     try {
-      print(tokenCubit.state);
       final data = await _apiService.get(
-          url: '$kBaseUrl/getAll', token: tokenCubit.state, body: null);
+        url: '$kBaseUrl/saerch',
+        token: tokenCubit.state,
+        body: {"calssification": classification},
+      );
       List<ClassificationsModel> classifications = [];
-      for (var item in data['classifications']) {
+      for (var item in data['the results of the calssification:']) {
         classifications.add(ClassificationsModel(clssification: item));
       }
 
@@ -57,14 +41,15 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<MedicineModel>>> fetchMedicineOfClassification(
-      {required String classification}) async {
+  Future<Either<Failure, List<MedicineModel>>> searchByCommercialName(
+      {required String commercialName}) async {
     try {
       final data = await _apiService.get(
-          url: '$kBaseUrl/getAllMedicine?calssification=$classification',
-          token: tokenCubit.state, body: null);
+          url: '$kBaseUrl/saerchComp',
+          token: tokenCubit.state,
+          body: {"commercial_name": commercialName});
       List<MedicineModel> medicines = [];
-      for (var item in data['medicines']) {
+      for (var item in data['the results of the commercial name:']) {
         medicines.add(MedicineModel.fromJson(item));
       }
 

@@ -10,8 +10,10 @@ class AuthView extends StatelessWidget {
   final String authType;
   @override
   Widget build(BuildContext context) {
-    return AuthViewBody(
-      authType: authType,
+    return Scaffold(
+      body: AuthViewBody(
+        authType: authType,
+      ),
     );
   }
 }

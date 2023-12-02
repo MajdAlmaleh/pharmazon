@@ -31,8 +31,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: BlocConsumer<AuthCubit, AuthState>(
+      child:  BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
               GoRouter.of(context).push(AppRouter.kHomeView);
@@ -106,7 +105,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
             );
           },
         ),
-      ),
+      
     );
   }
 }

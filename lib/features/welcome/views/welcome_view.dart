@@ -6,6 +6,8 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WelcomeViewBody();
+    return const Scaffold(
+      body: WelcomeViewBody(),
+    );
   }
 }

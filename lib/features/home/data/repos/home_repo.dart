@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:pharmazon/core/errors/failures.dart';
-import 'package:pharmazon/features/home/data/models/classifications_model.dart';
-import 'package:pharmazon/features/home/data/models/medicine_model.dart';
+import 'package:pharmazon/core/shared_models/classifications_model.dart';
+import 'package:pharmazon/core/shared_models/medicine_model.dart';
 
 abstract class HomeRepo {
   Future<void> logOut();
