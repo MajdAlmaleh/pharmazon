@@ -14,7 +14,7 @@ import 'package:pharmazon/features/home/presentation/manager/classifications_cub
 import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon/generated/l10n.dart';
 
-import '../../../../auth/presentation/views/widgets/classification_item.dart';
+import '../../../../../core/widgets/classification_item.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({
@@ -30,20 +30,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     super.initState();
     BlocProvider.of<TokenCubit>(context).fetchSavedToken();
-   
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Column(
         children: [
           AuthButton(
-              onPressed: () async {
-                await HomeRepoImpl(getIt<ApiService>()).logOut();
-                // ignore: use_build_context_synchronously
+              onPressed: () {
                 GoRouter.of(context).go(AppRouter.kWelcomeView);
+                HomeRepoImpl(getIt<ApiService>()).logOut();
               },
               text: 'logout'),
           AuthButton(

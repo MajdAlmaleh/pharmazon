@@ -21,7 +21,7 @@ class SearchRepoImpl implements SearchRepo {
     //make the token with the token cubit
 
     try {
-      final data = await _apiService.get(
+      final data = await _apiService.post(
         url: '$kBaseUrl/saerch',
         token: tokenCubit.state,
         body: {"calssification": classification},
@@ -44,7 +44,7 @@ class SearchRepoImpl implements SearchRepo {
   Future<Either<Failure, List<MedicineModel>>> searchByCommercialName(
       {required String commercialName}) async {
     try {
-      final data = await _apiService.get(
+      final data = await _apiService.post(
           url: '$kBaseUrl/saerchComp',
           token: tokenCubit.state,
           body: {"commercial_name": commercialName});

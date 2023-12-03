@@ -18,7 +18,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<void> logOut() async {
     try {
       await _apiService.delete(
-          urlEndPoint: '$kBaseUrl/logout',
+          url: '$kBaseUrl/logout',
           body: {
             'api_token': tokenCubit.state,
           },
@@ -36,8 +36,8 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<ClassificationsModel>>>
       fetchClassifications() async {
     //make the token with the token cubit
-     await tokenCubit.fetchSavedToken();
-   
+    await tokenCubit.fetchSavedToken();
+
     try {
       print(tokenCubit.state);
       final data = await _apiService.get(
@@ -62,7 +62,8 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final data = await _apiService.get(
           url: '$kBaseUrl/getAllMedicine?calssification=$classification',
-          token: tokenCubit.state, body: null);
+          token: tokenCubit.state,
+          body: null);
       List<MedicineModel> medicines = [];
       for (var item in data['medicines']) {
         medicines.add(MedicineModel.fromJson(item));

@@ -20,6 +20,7 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => getIt<LanguageCubit>()),
       BlocProvider(create: (context) => getIt<TokenCubit>())
+      
     ],
     child: Pharmazon(
       router: router,

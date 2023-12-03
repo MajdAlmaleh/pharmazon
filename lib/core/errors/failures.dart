@@ -47,6 +47,4 @@ class ServerFailure extends Failure {
       return ServerFailure('Oops! There was an Error, Please try again');
     }
   }
-
-
 }

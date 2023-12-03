@@ -5,7 +5,7 @@ import 'package:pharmazon/core/utils/service_locator.dart';
 import 'package:pharmazon/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon/features/auth/presentation/views/auth_view.dart';
-import 'package:pharmazon/features/auth/presentation/views/widgets/medicine_details.dart';
+import 'package:pharmazon/core/widgets/medicine_details.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
 import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
