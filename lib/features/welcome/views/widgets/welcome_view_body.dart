@@ -12,39 +12,46 @@ class WelcomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              AssetsData.logo,
-            ),
-            // SvgPicture.asset(
-            //   'assets/images/logo.png',
-            //   height: MediaQuery.of(context).size.width,
-            //   // width: 800,
-            // )
-            Text(
-              S.of(context).title,
-              style: const TextStyle(fontSize: 20),
-            ),
-            AuthButton(
-                onPressed: () {
-                  GoRouter.of(context)
-                      .push(AppRouter.kAuthView, extra: kSignIn);
-                },
-                text: kSignIn),
-            const SizedBox(
-              height: 20,
-            ),
-            AuthButton(
-                onPressed: () {
-                  GoRouter.of(context)
-                      .push(AppRouter.kAuthView, extra: kSignUp);
-                },
-                text: kSignUp),
-          ],
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                AssetsData.logo,
+              ),
+              // SvgPicture.asset(
+              //   'assets/images/logo.png',
+              //   height: MediaQuery.of(context).size.width,
+              //   // width: 800,
+              // )
+              Text(
+                S.of(context).title,
+                style: const TextStyle(fontSize: 20),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40,top: 60),
+                child: AuthButton(
+                    onPressed: () {
+                      GoRouter.of(context)
+                          .push(AppRouter.kAuthView, extra: kSignIn,);
+                      // GoRouter.of(context)
+                      //     .push(AppRouter.kAuthView, extra: kSignIn,);
+                    },
+                    text: kSignIn),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              AuthButton(
+                  onPressed: () {
+                    GoRouter.of(context)
+                        .push(AppRouter.kAuthView, extra: kSignUp);
+                  },
+                  text: kSignUp),
+            ],
+          ),
         ),
       
     );

@@ -10,6 +10,8 @@ class AuthTextField extends StatelessWidget {
     required this.hintText,
     required this.textInputType,
     this.obscureText = false,
+    this.prefixIcon,
+    this.suffixIcon,
   });
 
   final String? Function(String? p1)? phoneNumberValidator;
@@ -18,6 +20,8 @@ class AuthTextField extends StatelessWidget {
   final String hintText;
   final TextInputType textInputType;
   final bool obscureText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -28,9 +32,12 @@ class AuthTextField extends StatelessWidget {
       inputFormatters: formatter,
       decoration: InputDecoration(
         hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon:suffixIcon,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(width: 1),
+          
         ),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1),

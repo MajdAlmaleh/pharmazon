@@ -11,8 +11,20 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthViewBody(
-        authType: authType,
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Color(0xFF17C381),
+              Color(0xFF17C381),
+            ],
+          ),
+        ),
+        child: AuthViewBody(
+          authType: authType,
+        ),
       ),
     );
   }

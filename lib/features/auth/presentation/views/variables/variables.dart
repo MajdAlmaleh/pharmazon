@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,7 +22,7 @@ String? Function(String?)? phoneNumberValidator = (value) {
 };
 String? Function(String?)? usernameValidator = (value) {
   if (value == null || value.trim().isEmpty || value.trim().length < 4) {
-    return 'Username should be at lest 10 characters';
+    return 'Username should be at lest 4 characters';
   }
   return null;
 };
@@ -45,3 +46,5 @@ List<TextInputFormatter>? passwordFormatter = <TextInputFormatter>[
 ];
 
 void Function(String?)? onSave;
+
+bool viewPassword = false;

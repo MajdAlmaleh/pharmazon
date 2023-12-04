@@ -37,6 +37,8 @@ class Pharmazon extends StatelessWidget {
     return BlocBuilder<LanguageCubit, String>(
       builder: (context, state) {
         return MaterialApp.router(
+          
+          theme:ThemeData().copyWith(colorScheme: ColorScheme.fromSeed(seedColor:const Color(0xFF17C381))),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

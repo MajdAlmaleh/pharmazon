@@ -15,10 +15,13 @@ class AuthButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF17C381),
+        // backgroundColor: const Color(0xFF17C381),
         minimumSize: const Size(300, 70),
       ),
-      child: Text(text),
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.white, fontSize: (25)),
+      ),
     );
   }
 }
