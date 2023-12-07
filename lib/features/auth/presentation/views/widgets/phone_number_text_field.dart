@@ -9,21 +9,18 @@ class PhoneNumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: isSignIn ? 120 : 40, right: 10, left: 10),
-      child: AuthTextField(
-        textInputType: TextInputType.number,
-        phoneNumberValidator: phoneNumberValidator,
-        prefixIcon: const Icon(
-          Icons.phone,
-          color: Color(0xFF2AEBA4),
-        ),
-        onSave: (newValue) {
-          phoneNumber = newValue!;
-        },
-        formatter: phoneFormatter,
-        hintText: "Enter your phone number",
+    return AuthTextField(
+      textInputType: TextInputType.number,
+      phoneNumberValidator: phoneNumberValidator,
+      prefixIcon: const Icon(
+        Icons.phone,
+        color: Color(0xFF2AEBA4),
       ),
+      onSave: (newValue) {
+        phoneNumber = newValue!;
+      },
+      formatter: phoneFormatter,
+      hintText: "Enter your phone number",
     );
   }
 }

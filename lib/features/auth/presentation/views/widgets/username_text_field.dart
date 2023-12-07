@@ -9,21 +9,18 @@ class UsernameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 120, right: 10, left: 10),
-      child: AuthTextField(
-        textInputType: TextInputType.text,
-        prefixIcon: const Icon(
-          Icons.medical_information,
-          color: Color(0xFF2AEBA4),
-        ),
-        phoneNumberValidator: usernameValidator,
-        onSave: (newValue) {
-          username = newValue!;
-        },
-        formatter: usernameFormatter,
-        hintText: 'Enter your username',
+    return AuthTextField(
+      textInputType: TextInputType.text,
+      prefixIcon: const Icon(
+        Icons.medical_information,
+        color: Color(0xFF2AEBA4),
       ),
+      phoneNumberValidator: usernameValidator,
+      onSave: (newValue) {
+        username = newValue!;
+      },
+      formatter: usernameFormatter,
+      hintText: 'Enter your username',
     );
   }
 }

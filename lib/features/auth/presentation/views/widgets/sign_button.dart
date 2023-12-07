@@ -5,8 +5,9 @@ import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cub
 import 'package:pharmazon/features/auth/presentation/views/variables/variables.dart';
 
 class SignButton extends StatelessWidget {
+  final String text;
   const SignButton({
-    super.key,
+    super.key, required this.text,
   });
 
   @override
@@ -26,7 +27,8 @@ class SignButton extends StatelessWidget {
             }
           }
         },
-        text: isSignIn ? 'Sign In' : 'Sign Up',
+
+        text: text,
       ),
     );
   }

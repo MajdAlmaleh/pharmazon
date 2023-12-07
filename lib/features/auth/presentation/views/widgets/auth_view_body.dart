@@ -72,14 +72,25 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                         key: formKey,
                         child: Column(
                           children: [
-                            if (!isSignIn) const UsernameTextField(),
-                            const PhoneNumberTextField(),
+                            if (!isSignIn)
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    top: 120, right: 10, left: 10),
+                                child: UsernameTextField(),
+                              ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: isSignIn ? 120 : 40,
+                                  right: 10,
+                                  left: 10),
+                              child: const PhoneNumberTextField(),
+                            ),
                             PasswordTextField(viewPasswordState: () {
                               setState(() {
-                                viewPassword = !viewPassword;
+                                hidePassword = !hidePassword;
                               });
                             }),
-                            const SignButton(),
+                             SignButton(text: isSignIn ? 'Sign In' : 'Sign Up',),
                             Padding(
                               padding: const EdgeInsets.only(
                                 top: 50,
@@ -99,7 +110,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                       });
                                     },
                                     child: Text(
-                                      isSignIn ? 'Sign In' : 'Sign Up',
+                                      !isSignIn ? 'Sign In' : 'Sign Up',
                                       style: const TextStyle(
                                           color: Colors.green, fontSize: 20),
                                     ),

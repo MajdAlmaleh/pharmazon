@@ -6,20 +6,23 @@ class MedicineDetails extends StatelessWidget {
   final MedicineModel medicineModel;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(
-      child: Card(
-        child: Column(
-          children: [
-            Text(medicineModel.commercialName!),
-            Text(medicineModel.calssification!),
-            Text(medicineModel.expireDate!),
-            Text(medicineModel.id.toString()),
-            Text(medicineModel.price.toString()),
-            Text(medicineModel.manufactureCompany!),
-            Text(medicineModel.quantityAvailable.toString()),
-          ],
+    return Scaffold(
+      body: Center(
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(medicineModel.commercialName!),
+              Text(medicineModel.calssification!),
+              Text(medicineModel.expireDate!),
+              Text(medicineModel.id.toString()),
+              Text(medicineModel.price.toString()),
+              Text(medicineModel.manufactureCompany!),
+              Text(medicineModel.quantityAvailable.toString()),
+            ],
+          ),
         ),
       ),
-     ));
+    );
   }
 }

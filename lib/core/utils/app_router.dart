@@ -10,6 +10,7 @@ import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
 import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon/features/home/presentation/views/home_view.dart';
+import 'package:pharmazon/features/home/presentation/views/medicines_view.dart';
 import 'package:pharmazon/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -20,6 +21,7 @@ abstract class AppRouter {
   static const kWelcomeView = '/welcomeView';
   static const kAuthView = '/authView';
   static const kHomeView = '/homeView';
+  static const kMedicinesView = '/medicinesView';
   static const kSearchView = '/searchView';
   static const kMedicineDetail = '/medicineDetail';
 
@@ -72,21 +74,33 @@ abstract class AppRouter {
         path: kSearchView,
         builder: (context, state) => MultiBlocProvider(
           providers: [
-            BlocProvider( create: (context) =>
-              ClassificationsSearchCubit(getIt<SearchRepoImpl>(),),),
-            BlocProvider( create: (context) =>
-              CommercialNameSearchCubit(getIt<SearchRepoImpl>(),),),
+            BlocProvider(
+              create: (context) => ClassificationsSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => CommercialNameSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
           ],
-         
           child: const SearchView(),
         ),
       ),
-    GoRoute(
-      path: kMedicineDetail,
-      builder: (context, state) =>  MedicineDetails(
-        medicineModel: state.extra as MedicineModel,
+      GoRoute(
+        path: kMedicineDetail,
+        builder: (context, state) => MedicineDetails(
+          medicineModel: state.extra as MedicineModel,
+        ),
       ),
-    ),
+      GoRoute(
+        path: kMedicinesView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => MedicineFromClassCubit(getIt<HomeRepoImpl>()),
+          child: MedicinesView(classificationName: state.extra as String),
+        ),
+      ),
     ]);
   }
 

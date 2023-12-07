@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pharmazon/core/utils/app_router.dart';
 
 class ClassificationItem extends StatelessWidget {
   const ClassificationItem({
@@ -10,22 +10,33 @@ class ClassificationItem extends StatelessWidget {
 
   final String classificotionName;
 
+ 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        //TODO SEND A REQUEST conatis the classification name to the backend
-        BlocProvider.of<MedicineFromClassCubit>(context)
-            .fetchMedicineOfClassification(classification: classificotionName);
+      onTap: ()  {
+        GoRouter.of(context).push(AppRouter.kMedicinesView,extra: classificotionName);
+   
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          classificotionName,
-          style: const TextStyle(
-            fontSize: 20,
+      child: Stack(
+        children: [
+          Image.asset(
+            'assets/images/medicine.jpg',
+            height: 200,
+            fit: BoxFit.cover,
           ),
-        ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              classificotionName,
+              style: const TextStyle(fontSize: 30, color: Colors.white),
+            ),
+          )
+        ],
       ),
     );
   }

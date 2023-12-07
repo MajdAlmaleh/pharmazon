@@ -47,4 +47,4 @@ List<TextInputFormatter>? passwordFormatter = <TextInputFormatter>[
 
 void Function(String?)? onSave;
 
-bool viewPassword = false;
+bool hidePassword = true;

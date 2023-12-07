@@ -14,14 +14,14 @@ class PasswordTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 40, right: 10, left: 10, bottom: 40),
       child: AuthTextField(
-          obscureText: viewPassword,
+          obscureText: hidePassword,
           prefixIcon: const Icon(
             Icons.password,
             color: Color(0xFF2AEBA4),
           ),
           suffixIcon: IconButton(
             icon: Icon(
-              viewPassword ?Icons.visibility_off: Icons.visibility  ,
+              hidePassword ? Icons.visibility_off : Icons.visibility,
               color: const Color(0xFF2AEBA4),
             ),
             onPressed: viewPasswordState,
