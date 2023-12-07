@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
+import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 
-class MedicineDetails extends StatelessWidget {
+class MedicineDetails extends StatefulWidget {
   const MedicineDetails({super.key, required this.medicineModel});
   final MedicineModel medicineModel;
+
+  @override
+  State<MedicineDetails> createState() => _MedicineDetailsState();
+}
+
+class _MedicineDetailsState extends State<MedicineDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,13 +20,22 @@ class MedicineDetails extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(medicineModel.commercialName!),
-              Text(medicineModel.calssification!),
-              Text(medicineModel.expireDate!),
-              Text(medicineModel.id.toString()),
-              Text(medicineModel.price.toString()),
-              Text(medicineModel.manufactureCompany!),
-              Text(medicineModel.quantityAvailable.toString()),
+              Text(widget.medicineModel.commercialName!),
+              Text(widget.medicineModel.calssification!),
+              Text(widget.medicineModel.expireDate!),
+              Text(widget.medicineModel.id.toString()),
+              Text(widget.medicineModel.price.toString()),
+              Text(widget.medicineModel.manufactureCompany!),
+              Text(widget.medicineModel.quantityAvailable.toString()),
+              ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<OrderCubit>(context)
+                        .addItem(widget.medicineModel.id!, 1);
+                    setState(() {});
+                  },
+                  child: const Text('add')),
+              Text(
+                  'quantity ${BlocProvider.of<OrderCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
             ],
           ),
         ),

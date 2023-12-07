@@ -6,6 +6,8 @@ import 'package:pharmazon/blocs/language_cubit/language_cubit.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
+import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
+import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 import 'package:pharmazon/generated/l10n.dart';
 
 void main() async {
@@ -19,8 +21,8 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => getIt<LanguageCubit>()),
-      BlocProvider(create: (context) => getIt<TokenCubit>())
-      
+      BlocProvider(create: (context) => getIt<TokenCubit>()),
+      BlocProvider(create: (context) => OrderCubit(getIt<OrderRepoImpl>())),
     ],
     child: Pharmazon(
       router: router,
@@ -37,8 +39,9 @@ class Pharmazon extends StatelessWidget {
     return BlocBuilder<LanguageCubit, String>(
       builder: (context, state) {
         return MaterialApp.router(
-          
-          theme:ThemeData().copyWith(colorScheme: ColorScheme.fromSeed(seedColor:const Color(0xFF17C381))),
+          theme: ThemeData().copyWith(
+              colorScheme:
+                  ColorScheme.fromSeed(seedColor: const Color(0xFF17C381))),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

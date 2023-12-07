@@ -14,7 +14,7 @@ class SearchRepoImpl implements SearchRepo {
   final TokenCubit tokenCubit;
 
   SearchRepoImpl(this._apiService) : tokenCubit = GetIt.instance<TokenCubit>();
-  @override
+  
   @override
   Future<Either<Failure, List<ClassificationsModel>>> searchByClassifications(
       {required String classification}) async {
