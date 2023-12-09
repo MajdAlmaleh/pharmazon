@@ -13,6 +13,7 @@ import 'package:pharmazon/features/home/presentation/views/home_view.dart';
 import 'package:pharmazon/features/home/presentation/views/medicines_view.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
+import 'package:pharmazon/features/order/presentation/views/order_view.dart';
 import 'package:pharmazon/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -26,6 +27,7 @@ abstract class AppRouter {
   static const kMedicinesView = '/medicinesView';
   static const kSearchView = '/searchView';
   static const kMedicineDetail = '/medicineDetail';
+  static const kOrderView = '/orderView';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -48,7 +50,6 @@ abstract class AppRouter {
                     create: (context) =>
                         MedicineFromClassCubit(getIt<HomeRepoImpl>()),
                   ),
-              
                 ], child: const HomeView())),
       GoRoute(
         path: kWelcomeView,
@@ -73,7 +74,6 @@ abstract class AppRouter {
                 BlocProvider(
                     create: (context) =>
                         MedicineFromClassCubit(getIt<HomeRepoImpl>())),
-               
               ], child: const HomeView())),
       GoRoute(
         path: kSearchView,
@@ -106,6 +106,7 @@ abstract class AppRouter {
           child: MedicinesView(classificationName: state.extra as String),
         ),
       ),
+      GoRoute(path: kOrderView, builder: (context, state) => const OrderView()),
     ]);
   }
 

@@ -12,6 +12,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('classification'),
+       
       ),
       drawer: const HomeDrawrer(),
       body: const HomeViewBody(),

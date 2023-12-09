@@ -20,8 +20,8 @@ class OrderUpdated extends OrderState {
 }
 
 class OrderSuccess extends OrderState {
-    final List<OrderItemModel> orderItems;
-
+    final String  orderItems;
+//List<OrderItemModel>
   const OrderSuccess(this.orderItems);
 }
 

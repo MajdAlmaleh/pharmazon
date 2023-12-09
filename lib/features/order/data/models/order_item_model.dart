@@ -5,8 +5,11 @@ class OrderItemModel {
 
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'order_quantity': orderQuantity,
+        'pharmaceutical_id': id,
+        'quantity': orderQuantity,
       };
-
+  factory OrderItemModel.fromJson(Map<String, dynamic> json) =>OrderItemModel (
+       id: json['pharmaceutical_id'],
+       orderQuantity:json['quantity'] ,
+  );
 }
