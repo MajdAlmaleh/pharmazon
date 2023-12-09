@@ -5,6 +5,7 @@ import 'package:pharmazon/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
 import 'package:pharmazon/features/home/presentation/views/widgets/medicines_list_view.dart';
+import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_state.dart';
 
@@ -34,7 +35,7 @@ class OrderViewBody extends StatelessWidget {
             return Expanded(
               child: MedicinesListView(
                 medicines:
-                    BlocProvider.of<OrderCubit>(context).getOrderMedicines(),
+                    BlocProvider.of<CartCubit>(context).getOrderMedicines(),
                 isMedicineOrder: true,
               ),
             );
@@ -43,6 +44,7 @@ class OrderViewBody extends StatelessWidget {
         ElevatedButton(
             onPressed: () {
               BlocProvider.of<OrderCubit>(context).postDelivery();
+              BlocProvider.of<CartCubit>(context).resetItems();
             },
             child: const Text('send order'))
       ],

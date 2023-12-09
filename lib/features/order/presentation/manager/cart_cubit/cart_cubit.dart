@@ -7,11 +7,26 @@ class CartCubit extends Cubit<CartState> {
   List<OrderItemModel?> orderItems = [];
   List<MedicineModel> orderMedicines = [];
 
-  CartCubit(super.initialState);
+  CartCubit():super(CartInitial());
+  
+
+  List<MedicineModel> getOrderMedicines() {
+    return orderMedicines;
+  }
 
   bool checkIfEmpty() {
     return orderItems.isEmpty;
   }
+
+ void resetItems(){
+orderItems = [];
+
+orderMedicines = [];
+
+ }
+
+
+
 
   void addItem(int id, int quantity, MedicineModel orderMedicine) {
     var existingItem =
@@ -36,4 +51,5 @@ class CartCubit extends Cubit<CartState> {
       return existingItem.orderQuantity!;
     }
   }
+  
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
+import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 
 class MedicineDetails extends StatefulWidget {
@@ -29,13 +30,13 @@ class _MedicineDetailsState extends State<MedicineDetails> {
               Text(widget.medicineModel.quantityAvailable.toString()),
               ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<OrderCubit>(context)
+                    BlocProvider.of<CartCubit>(context)
                         .addItem(widget.medicineModel.id!, 1,widget.medicineModel);
                     setState(() {});
                   },
                   child: const Text('add')),
               Text(
-                  'quantity ${BlocProvider.of<OrderCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
+                  'quantity ${BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
             ],
           ),
         ),

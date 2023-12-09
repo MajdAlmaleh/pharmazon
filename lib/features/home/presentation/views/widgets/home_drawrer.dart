@@ -5,11 +5,14 @@ import 'package:pharmazon/core/utils/api_service.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
+import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 
 class HomeDrawrer extends StatelessWidget {
+  final String? pageName;
   const HomeDrawrer({
     super.key,
+    this.pageName,
   });
 
   @override
@@ -29,7 +32,7 @@ class HomeDrawrer extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).pop();
-             
+
                 GoRouter.of(context).push(AppRouter.kSearchView);
               },
               leading: const Icon(
@@ -49,12 +52,15 @@ class HomeDrawrer extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
             ),
-            if (BlocProvider.of<OrderCubit>(context).checkIfEmpty())
+            if (!BlocProvider.of<CartCubit>(context).checkIfEmpty())
               ListTile(
                 onTap: () {
-                     Navigator.of(context).pop();
-                 context.push(AppRouter.kOrderView);
-                //  HomeRepoImpl(getIt<ApiService>()).logOut();
+                  Navigator.of(context).pop();
+                  if (pageName == 'cart') {
+                    return;
+                  }
+                  context.push(AppRouter.kOrderView);
+                  //  HomeRepoImpl(getIt<ApiService>()).logOut();
                 },
                 leading: const Icon(
                   Icons.shopping_cart,
