@@ -9,11 +9,17 @@ import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cu
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_state.dart';
 
-class OrderViewBody extends StatelessWidget {
+class OrderViewBody extends StatefulWidget {
+  
   const OrderViewBody({
     super.key,
   });
 
+  @override
+  State<OrderViewBody> createState() => _OrderViewBodyState();
+}
+
+class _OrderViewBodyState extends State<OrderViewBody> {
   @override
   Widget build(BuildContext context) {
     return Column(

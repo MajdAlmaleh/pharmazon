@@ -44,7 +44,7 @@ class AuthRepoImpl implements AuthRepo {
       required String password}) async {
     try {
       final response = await _apiService.post(
-        url: '$kBaseUrl/users', // Replace with your register endpoint
+        url: '$kBaseUrl/signup', // Replace with your register endpoint
         body: {
           'name': username,
           'phone': phoneNumber,

@@ -6,7 +6,7 @@ import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 
-class MedicineBubble extends StatefulWidget {
+class MedicineBubble extends StatelessWidget {
   const MedicineBubble({
     super.key,
     required this.medicineModel,
@@ -16,25 +16,16 @@ final bool isMedicineOrder;
   final MedicineModel medicineModel;
 
   @override
-  State<MedicineBubble> createState() => _MedicineBubbleState();
-}
-
-class _MedicineBubbleState extends State<MedicineBubble> {
-
-
-
-  
-  @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: Text(widget.medicineModel.price.toString()),
-        title: Text(widget.medicineModel.commercialName!),
-        onTap: () {
+        leading: Text(medicineModel.price.toString()),
+        title: Text(medicineModel.commercialName!),
+        onTap:isMedicineOrder?null: () {
           GoRouter.of(context)
-              .push(AppRouter.kMedicineDetail, extra: widget.medicineModel);
+              .push(AppRouter.kMedicineDetail, extra: medicineModel);
         },
-        trailing: widget.isMedicineOrder?Text(BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!).toString()):null,
+        trailing: isMedicineOrder?Text(BlocProvider.of<CartCubit>(context).getItemQuatity(medicineModel.id!).toString()):null,
       ),
       
     );

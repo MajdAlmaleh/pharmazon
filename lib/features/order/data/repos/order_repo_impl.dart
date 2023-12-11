@@ -22,10 +22,11 @@ class OrderRepoImpl implements OrderRepo {
           url: '$kBaseUrl/order',
           token: tokenCubit.state,
           body: {"order": orderItems});
-      List<OrderItemModel> medicines = [];
-      for (var item in data['order']) {
-        medicines.add(OrderItemModel.fromJson(item));
-      }
+      // List<OrderItemModel> medicines = [];
+      // print(data);
+      // for (var item in data['order']) {
+      //   medicines.add(OrderItemModel.fromJson(item));
+      // }
 
       return Right(data);
     } on Exception catch (e) {
