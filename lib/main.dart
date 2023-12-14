@@ -23,7 +23,7 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => getIt<LanguageCubit>()),
       BlocProvider(create: (context) => getIt<TokenCubit>()),
-       BlocProvider(create: (context) => CartCubit()),
+       BlocProvider(create: (context) => getIt<CartCubit>()),
   BlocProvider(create: (context) => OrderCubit(getIt<OrderRepoImpl>(), getIt<CartCubit>()))  
     ],
     child: Pharmazon(

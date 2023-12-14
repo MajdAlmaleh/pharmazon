@@ -70,6 +70,23 @@ class HomeDrawrer extends StatelessWidget {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
+
+
+
+         ListTile(
+            leading: const Icon(
+              Icons.shopping_cart_checkout,
+            ),
+            title: const Text(
+              'My Orders',
+              style: TextStyle(fontSize: 15),
+            ),
+            onTap: () {
+             context.go(AppRouter.kOrdersView); 
+            },
+          ),
+
+
             ListTile(
               onTap: () {
                 GoRouter.of(context).go(AppRouter.kWelcomeView);
