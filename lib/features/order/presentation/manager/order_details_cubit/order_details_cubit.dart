@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pharmazon/features/order/data/models/date_model.dart';
 import 'package:pharmazon/features/order/data/models/order/order.details.dart';

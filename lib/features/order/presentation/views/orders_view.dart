@@ -4,14 +4,14 @@ import 'package:pharmazon/features/order/presentation/views/widgets/orders_view_
 
 
 class OrdersView extends StatelessWidget {
-  final String clientModel;
-  const OrdersView({super.key, required this.clientModel});
+ 
+  const OrdersView({super.key, });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Dates for $clientModel '),
+          title: const  Text('Dates of orders'),
         ),
         drawer: const HomeDrawrer(
             //  pageName: 'cart',

@@ -41,21 +41,17 @@ class OrderRepoImpl implements OrderRepo {
   }
 
   @override
-  Future<Either<Failure, List<DateModel>>> getDatesFromUser({required String userId}) async{
+  Future<Either<Failure, List<DateModel>>> getDatesFromUser() async{
       try {
-      final data = await _apiService.post(
-        url: '$kBaseUrl/getDate',
-        token: tokenCubit.state,
-          body: {
-            "id": userId
-          }
+      final data = await _apiService.get(
+        url: '$kBaseUrl/getTDate',
+        token: tokenCubit.state, body: null,
       );
       List<DateModel> dates = [];
       print(data);
       for (var item in data['order_dates']) {
         dates.add(DateModel.fromJson(item));
       }
-
       return Right(dates);
     } on Exception catch (e) {
       if (e is DioException) {

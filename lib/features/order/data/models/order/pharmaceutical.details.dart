@@ -4,6 +4,7 @@ import 'pivot.details.dart';
 
 class Pharmaceutical extends Equatable {
 	final int? id;
+  
 	final String? scientificName;
 	final String? commercialName;
 	final String? calssification;
@@ -13,6 +14,7 @@ class Pharmaceutical extends Equatable {
 	final int? price;
 	final DateTime? createdAt;
 	final DateTime? updatedAt;
+
 	final Pivot? pivot;
 
 	const Pharmaceutical({

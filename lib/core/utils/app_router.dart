@@ -14,7 +14,6 @@ import 'package:pharmazon/features/home/presentation/views/medicines_view.dart';
 import 'package:pharmazon/features/order/data/models/date_model.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
-import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
 import 'package:pharmazon/features/order/presentation/views/order_details_view.dart';
 import 'package:pharmazon/features/order/presentation/views/order_view.dart';
@@ -113,22 +112,21 @@ abstract class AppRouter {
           child: MedicinesView(classificationName: state.extra as String),
         ),
       ),
-      GoRoute(path: kOrderView, builder: (context, state) => const OrderView(
-
-      )),
-        GoRoute(
+      GoRoute(path: kOrderView, builder: (context, state) => const OrderView()),
+      GoRoute(
         path: kOrdersView,
         builder: (context, state) => BlocProvider(
           //TODO here make it from the token or from fetching via token
-          create: (context) => DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(userId: 'userId'),
-          child: OrdersView(clientModel: ''),
+          create: (context) => DatesCubit(getIt<OrderRepoImpl>())
+            ..fetchDateFromUser(),
+          child: const  OrdersView(),
         ),
       ),
-          GoRoute(
+      GoRoute(
         path: kOrderDetailsFromDate,
         builder: (context, state) => BlocProvider(
-          create: (context) =>
-              OrderDetailsCubit(getIt<OrderRepoImpl>())..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
+          create: (context) => OrderDetailsCubit(getIt<OrderRepoImpl>())
+            ..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
           child: OrderDetailsView(
             dateModel: state.extra as DateModel,
           ),

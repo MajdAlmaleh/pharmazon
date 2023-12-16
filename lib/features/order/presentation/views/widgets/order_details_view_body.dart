@@ -20,13 +20,13 @@ class OrderDetailsViewBody extends StatelessWidget {
           return CustomError(errMessage: state.errMessage);
         }
         if (state is OrderDetailsSuccess) {
-          print(state.order.pharmaceuticals!);
-          if (state.order.pharmaceuticals!.isEmpty) {
+          print(state.orderDetails.pharmaceuticals!);
+          if (state.orderDetails.pharmaceuticals!.isEmpty) {
             return const Text('empty');
           }
           return Card(
               child: Column(
-            children: [Text(state.order.pharmaceuticals![0].price.toString())],
+            children: [Text(state.orderDetails.order!.payment.toString())],
           ));
         }
         return const Center(child: Text('there is no clients'));

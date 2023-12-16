@@ -17,7 +17,7 @@ final class OrderDetailsFailure extends OrderDetailsState {
 }
 
 final class OrderDetailsSuccess extends OrderDetailsState {
-  final OrderDetails order;
+  final OrderDetails orderDetails;
 
-  const OrderDetailsSuccess(this.order);
+  const OrderDetailsSuccess(this.orderDetails);
 }

@@ -13,10 +13,10 @@ class DatesCubit extends Cubit<DatesState> {
 
   
 
- Future<void> fetchDateFromUser({required String userId}) async {
+ Future<void> fetchDateFromUser() async {
     emit(DatesLoading());
 
-    final result = await orderRepo.getDatesFromUser(userId: userId);
+    final result = await orderRepo.getDatesFromUser();
 
     result.fold((failure) {
       emit(DatesFailure(errMessage: failure.errMessage));
@@ -24,6 +24,5 @@ class DatesCubit extends Cubit<DatesState> {
       emit(DatesSuccess(dates));
     });
   }
-
   
 }
