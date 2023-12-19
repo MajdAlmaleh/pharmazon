@@ -6,6 +6,7 @@ import 'package:pharmazon/blocs/language_cubit/language_cubit.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
+import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
@@ -23,7 +24,7 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => getIt<LanguageCubit>()),
       BlocProvider(create: (context) => getIt<TokenCubit>()),
-       BlocProvider(create: (context) => getIt<CartCubit>()),
+    BlocProvider(create: (context) => getIt<CartCubit>()),
   BlocProvider(create: (context) => OrderCubit(getIt<OrderRepoImpl>(), getIt<CartCubit>()))  
     ],
     child: Pharmazon(

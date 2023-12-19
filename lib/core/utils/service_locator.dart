@@ -12,10 +12,10 @@ import 'package:pharmazon/features/search/data/repos/search_repo_impl.dart';
 GetIt getIt = GetIt.instance;
 
 void setupServiceLocator() {
- getIt.registerLazySingleton<Dio>(() => Dio());
- getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
- getIt.registerLazySingleton<AuthRepoImpl>(
-     () => AuthRepoImpl(getIt<ApiService>()));
+getIt.registerLazySingleton<Dio>(() => Dio());
+getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
+getIt.registerLazySingleton<AuthRepoImpl>(
+  () => AuthRepoImpl(getIt<ApiService>()));
   getIt.registerLazySingleton<HomeRepoImpl>(
       () => HomeRepoImpl(getIt<ApiService>()));
   getIt.registerLazySingleton<SearchRepoImpl>(

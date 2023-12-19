@@ -25,6 +25,11 @@ class CustomSearchBar extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
+        onChanged: (value) {
+          if(controller.text.trim().isNotEmpty){
+          onSearch(controller.text);
+          }
+        },
         decoration: InputDecoration(
           hintText: 'Search',
           contentPadding:

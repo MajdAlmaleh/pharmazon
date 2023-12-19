@@ -28,10 +28,26 @@ class HomeDrawrer extends StatelessWidget {
                 color: const Color(0xFF17C381),
               ),
             ),
+
+  ListTile(
+            leading: const Icon(
+              Icons.home,
+            ),
+            title: const Text(
+              'home',
+              style: TextStyle(fontSize: 15),
+            ),
+            onTap: () {
+             context.go(AppRouter.kHomeView); 
+            },
+          ),
+
+
+
+
             ListTile(
               onTap: () {
                 Navigator.of(context).pop();
-
                 GoRouter.of(context).push(AppRouter.kSearchView);
               },
               leading: const Icon(
@@ -84,6 +100,8 @@ class HomeDrawrer extends StatelessWidget {
              context.go(AppRouter.kOrdersView); 
             },
           ),
+
+       
 
 
             ListTile(

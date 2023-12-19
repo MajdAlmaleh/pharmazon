@@ -3,4 +3,4 @@ const kBaseUrl = 'http://10.0.2.2:8000/api';
 const kSignIn = 'Login';
 const kSignUp = 'SighUp';
 const kArabic = 'ar';
-const kEnglish='en';
+const kEnglish = 'en';

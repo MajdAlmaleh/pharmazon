@@ -28,14 +28,14 @@ orderMedicines = [];
 
 
 
-  void addItem(int id, int quantity, MedicineModel orderMedicine) {
+  void addItem( int quantity, MedicineModel orderMedicine) {
     var existingItem =
-        orderItems.firstWhere((item) => item!.id == id, orElse: () => null);
+        orderItems.firstWhere((item) => item!.id == orderMedicine.id, orElse: () => null);
 
     if (existingItem != null) {
       existingItem.orderQuantity = (existingItem.orderQuantity ?? 0) + quantity;
     } else {
-      orderItems.add(OrderItemModel(id: id, orderQuantity: quantity));
+      orderItems.add(OrderItemModel(id: orderMedicine.id, orderQuantity: quantity));
       orderMedicines.add(orderMedicine);
     }
     emit(CartUpdated(orderItems));

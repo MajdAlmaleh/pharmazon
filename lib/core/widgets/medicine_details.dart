@@ -30,7 +30,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
               ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<CartCubit>(context).addItem(
-                        widget.medicineModel.id!, 1, widget.medicineModel);
+                         1, widget.medicineModel);
                     setState(() {});
                   },
                   child: const Text('add')),

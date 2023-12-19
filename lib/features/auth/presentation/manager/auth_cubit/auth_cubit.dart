@@ -15,7 +15,8 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await authRepo.signInWithEmailAndPassword(
         phoneNumber: phoneNumber, password: password);
  
-    result.fold((failure) {
+    result.fold(
+      (failure) {
       emit(AuthFailure(errMessage: failure.errMessage));
     }, (success) {
       emit(AuthSuccess(success['message']));
