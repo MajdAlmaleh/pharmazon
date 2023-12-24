@@ -16,28 +16,47 @@ class _MedicineDetailsState extends State<MedicineDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(widget.medicineModel.commercialName!),
-              Text(widget.medicineModel.calssification!),
-              Text(widget.medicineModel.expireDate!),
-              Text(widget.medicineModel.id.toString()),
-              Text(widget.medicineModel.price.toString()),
-              Text(widget.medicineModel.manufactureCompany!),
-              Text(widget.medicineModel.quantityAvailable.toString()),
-              ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<CartCubit>(context).addItem(
-                         1, widget.medicineModel);
-                    setState(() {});
-                  },
-                  child: const Text('add')),
-              Text(
-                  'quantity ${BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
-            ],
+      appBar: AppBar(
+        title: const Text('Medicine Details'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Name: ${widget.medicineModel.commercialName!}',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 10),
+                  Text('Classification: ${widget.medicineModel.calssification!}'),
+                  Text('Expire Date: ${widget.medicineModel.expireDate!}'),
+                  Text('ID: ${widget.medicineModel.id.toString()}'),
+                  Text('Price: ${widget.medicineModel.price.toString()}'),
+                  Text(
+                      'Manufacturer: ${widget.medicineModel.manufactureCompany!}'),
+                  Text(
+                      'Quantity Available: ${widget.medicineModel.quantityAvailable.toString()}'),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<CartCubit>(context)
+                          .addItem(1, widget.medicineModel);
+                      setState(() {});
+                    },
+                    child: const Text('Add to Cart'),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                      'Quantity in Cart: ${BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
+                ],
+              ),
+            ),
           ),
         ),
       ),
