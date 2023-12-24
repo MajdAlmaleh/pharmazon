@@ -4,7 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
+import 'package:pharmazon/features/order/data/models/date_model.dart';
 import 'package:pharmazon/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
+
+import 'date_list_view_item.dart';
 
 class OrdersViewBody extends StatelessWidget {
   const OrdersViewBody({
@@ -33,36 +36,12 @@ class OrdersViewBody extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: state.dates.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(state.dates[index].date!),
-                        onTap: (){
-                           context.push(AppRouter.kOrderDetailsFromDate,extra: state.dates[index]); 
-                        },
-                      ),
-                    );
+                    return DateListViewItem(date:state.dates[state.dates.length-index-1]);
                   },
                 ),
               );
             }
             return const Center(child: Text('there is no orders'));
-
-            // return Expanded(
-            //   child: ListView.builder(
-            //     itemCount: 5,
-            //     itemBuilder: (context, index) {
-            //       return Card(
-            //         child: ListTile(
-            //           title: const Text('state.clients[index].clientName!'),
-            //           onTap: () {
-            //             //todo navigate to detalis 
-            //           //  context.go('location');
-            //           },
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // );
           },
         ),
       ],

@@ -26,6 +26,7 @@ class CommercialNameSearchItems extends StatelessWidget {
               itemCount: state.medicines.length,
               itemBuilder: (context, index) {
                 return MedicineBubble(
+                  isOrder: true,
                   medicineModel: state.medicines[index],
                 );
               },

@@ -8,10 +8,13 @@ import 'package:pharmazon/features/auth/presentation/views/auth_view.dart';
 import 'package:pharmazon/core/widgets/medicine_details.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
+import 'package:pharmazon/features/home/presentation/manager/favorite_item/favorite_item_cubit.dart';
 import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
+import 'package:pharmazon/features/home/presentation/views/favorite_view.dart';
 import 'package:pharmazon/features/home/presentation/views/home_view.dart';
 import 'package:pharmazon/features/home/presentation/views/medicines_view.dart';
 import 'package:pharmazon/features/order/data/models/date_model.dart';
+import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
@@ -34,6 +37,7 @@ abstract class AppRouter {
   static const kOrderView = '/orderView';
   static const kOrdersView = '/ordersView';
   static const kOrderDetailsFromDate = '/orderDetailsFromDate';
+  static const kFavoritesView = '/favoritesView';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -56,6 +60,24 @@ abstract class AppRouter {
                     create: (context) =>
                         MedicineFromClassCubit(getIt<HomeRepoImpl>()),
                   ),
+                  BlocProvider(
+                    create: (context) => ClassificationsSearchCubit(
+                      getIt<SearchRepoImpl>(),
+                    ),
+                  ),
+                  BlocProvider(
+                    create: (context) => CommercialNameSearchCubit(
+                      getIt<SearchRepoImpl>(),
+                    ),
+                  ),
+                  BlocProvider(
+                    //TODO here make it from the token or from fetching via token
+                    create: (context) =>
+                        DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
+                    child: const OrdersView(),
+                  ),
+                  
+                  
                 ], child: const HomeView())),
       GoRoute(
         path: kWelcomeView,
@@ -74,12 +96,30 @@ abstract class AppRouter {
           path: kHomeView,
           builder: (context, state) => MultiBlocProvider(providers: [
                 BlocProvider(
+                  //TODO here make it from the token or from fetching via token
+                  create: (context) =>
+                      DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
+                  child: const OrdersView(),
+                ),
+                BlocProvider(
                     create: (context) =>
                         ClassificationsCubit(getIt<HomeRepoImpl>())
                           ..fetchClassifications()),
                 BlocProvider(
                     create: (context) =>
                         MedicineFromClassCubit(getIt<HomeRepoImpl>())),
+                BlocProvider(
+                  create: (context) => ClassificationsSearchCubit(
+                    getIt<SearchRepoImpl>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => CommercialNameSearchCubit(
+                    getIt<SearchRepoImpl>(),
+                  ),
+                ),
+                
+                
               ], child: const HomeView())),
       GoRoute(
         path: kSearchView,
@@ -102,7 +142,7 @@ abstract class AppRouter {
       GoRoute(
         path: kMedicineDetail,
         builder: (context, state) => MedicineDetails(
-          medicineModel: state.extra as MedicineModel,
+          medicineModel: state.extra as Pharmaceutical,
         ),
       ),
       GoRoute(
@@ -117,9 +157,9 @@ abstract class AppRouter {
         path: kOrdersView,
         builder: (context, state) => BlocProvider(
           //TODO here make it from the token or from fetching via token
-          create: (context) => DatesCubit(getIt<OrderRepoImpl>())
-            ..fetchDateFromUser(),
-          child: const  OrdersView(),
+          create: (context) =>
+              DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
+          child: const OrdersView(),
         ),
       ),
       GoRoute(
@@ -130,6 +170,24 @@ abstract class AppRouter {
           child: OrderDetailsView(
             dateModel: state.extra as DateModel,
           ),
+        ),
+      ),
+      GoRoute(
+        path: kOrderDetailsFromDate,
+        builder: (context, state) => BlocProvider(
+          create: (context) => OrderDetailsCubit(getIt<OrderRepoImpl>())
+            ..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
+          child: OrderDetailsView(
+            dateModel: state.extra as DateModel,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: kFavoritesView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              FavoriteItemCubit(getIt<HomeRepoImpl>())..getFavoriteItems(),
+          child: const FavoraitesView(),
         ),
       ),
     ]);

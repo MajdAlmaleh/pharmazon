@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo.dart';
+import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 
 part 'medicine_from_class_state.dart';
 

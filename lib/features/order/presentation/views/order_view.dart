@@ -12,10 +12,10 @@ class OrderView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Order'),
       ),
-      drawer: const HomeDrawrer(
-        pageName: 'cart',
-      ),
-      body: const OrderViewBody(),
+      //  drawer: const HomeDrawrer(
+      //    pageName: 'cart',
+      //  ),
+        body: const OrderViewBody(),
     );
   }
 }

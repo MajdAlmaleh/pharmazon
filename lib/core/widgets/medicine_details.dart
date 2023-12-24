@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
+import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 
 class MedicineDetails extends StatefulWidget {
   const MedicineDetails({super.key, required this.medicineModel});
-  final MedicineModel medicineModel;
+  final Pharmaceutical medicineModel;
 
   @override
   State<MedicineDetails> createState() => _MedicineDetailsState();

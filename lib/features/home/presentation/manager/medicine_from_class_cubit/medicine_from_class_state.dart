@@ -16,7 +16,7 @@ final class MedicineFromClassFailure extends MedicineFromClassState {
 }
 
 final class MedicineFromClassSuccess extends MedicineFromClassState {
-  final List<MedicineModel> medicineFromClass;
+  final List<Pharmaceutical> medicineFromClass;
 
   const MedicineFromClassSuccess(this.medicineFromClass);
 }

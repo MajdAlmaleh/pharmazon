@@ -1,16 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
+import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/order/data/models/order_item_model.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   List<OrderItemModel?> orderItems = [];
-  List<MedicineModel> orderMedicines = [];
+  List<Pharmaceutical> orderMedicines = [];
 
   CartCubit():super(CartInitial());
   
 
-  List<MedicineModel> getOrderMedicines() {
+  List<Pharmaceutical> getOrderMedicines() {
     return orderMedicines;
   }
 
@@ -28,7 +29,7 @@ orderMedicines = [];
 
 
 
-  void addItem( int quantity, MedicineModel orderMedicine) {
+  void addItem( int quantity, Pharmaceutical orderMedicine) {
     var existingItem =
         orderItems.firstWhere((item) => item!.id == orderMedicine.id, orElse: () => null);
 

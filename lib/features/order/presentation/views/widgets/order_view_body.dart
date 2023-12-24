@@ -10,7 +10,6 @@ import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_state.dart';
 
 class OrderViewBody extends StatefulWidget {
-  
   const OrderViewBody({
     super.key,
   });
@@ -38,21 +37,29 @@ class _OrderViewBodyState extends State<OrderViewBody> {
             if (state is OrderFailure) {
               return CustomError(errMessage: state.errMessage);
             }
-            return Expanded(
-              child: MedicinesListView(
-                medicines:
-                    BlocProvider.of<CartCubit>(context).getOrderMedicines(),
-                isMedicineOrder: true,
-              ),
+            final medicines =
+                BlocProvider.of<CartCubit>(context).getOrderMedicines();
+
+            if (medicines.isNotEmpty) {
+              return Expanded(
+                child: MedicinesListView(
+                  medicines: medicines,
+                  isOrder: true,
+                ),
+              );
+            }
+            return const Center(
+              child: Text('No medicines in the cart yet'),
             );
           },
         ),
-        ElevatedButton(
-            onPressed: () {
-              BlocProvider.of<OrderCubit>(context).postDelivery();
-              BlocProvider.of<CartCubit>(context).resetItems();
-            },
-            child: const Text('send order'))
+        if (BlocProvider.of<CartCubit>(context).getOrderMedicines().isNotEmpty)
+          ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<OrderCubit>(context).postDelivery();
+                BlocProvider.of<CartCubit>(context).resetItems();
+              },
+              child: const Text('send order'))
       ],
     );
   }

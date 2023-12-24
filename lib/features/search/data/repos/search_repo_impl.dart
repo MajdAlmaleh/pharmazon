@@ -7,6 +7,7 @@ import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/shared_models/classifications_model.dart';
 import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
+import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/search/data/repos/search_repo.dart';
 
 class SearchRepoImpl implements SearchRepo {
@@ -41,16 +42,16 @@ class SearchRepoImpl implements SearchRepo {
   }
 
   @override
-  Future<Either<Failure, List<MedicineModel>>> searchByCommercialName(
+  Future<Either<Failure, List<Pharmaceutical>>> searchByCommercialName(
       {required String commercialName}) async {
     try {
       final data = await _apiService.post(
           url: '$kBaseUrl/saerchComp',
           token: tokenCubit.state,
           body: {"commercial_name": commercialName});
-      List<MedicineModel> medicines = [];
+      List<Pharmaceutical> medicines = [];
       for (var item in data['the results of the commercial name:']) {
-        medicines.add(MedicineModel.fromJson(item));
+        medicines.add(Pharmaceutical.fromJson(item));
       }
 
       return Right(medicines);

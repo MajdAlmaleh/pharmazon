@@ -11,7 +11,7 @@ class OrderDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(dateModel.date!),
+        title: Text(dateModel.date!.split('T')[0]),
       ),
       body: const OrderDetailsViewBody(),
     );

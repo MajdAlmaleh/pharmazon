@@ -16,7 +16,7 @@ final class CommercialNameSearchFailure extends CommercialNameSearchState {
 }
 
 final class CommercialNameSearchSuccess extends CommercialNameSearchState {
-  final List<MedicineModel> medicines;
+  final List<Pharmaceutical> medicines;
 
   const CommercialNameSearchSuccess(this.medicines);
 }

@@ -7,6 +7,8 @@ import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
 import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
+import 'package:pharmazon/features/home/presentation/manager/favorite_item/favorite_item_cubit.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
@@ -24,8 +26,13 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => getIt<LanguageCubit>()),
       BlocProvider(create: (context) => getIt<TokenCubit>()),
-    BlocProvider(create: (context) => getIt<CartCubit>()),
-  BlocProvider(create: (context) => OrderCubit(getIt<OrderRepoImpl>(), getIt<CartCubit>()))  
+      BlocProvider(create: (context) => getIt<CartCubit>()),
+      BlocProvider(
+          create: (context) =>
+              OrderCubit(getIt<OrderRepoImpl>(), getIt<CartCubit>())),
+      BlocProvider(
+        create: (context) => FavoriteItemCubit(getIt<HomeRepoImpl>()),
+      ),
     ],
     child: Pharmazon(
       router: router,
@@ -43,8 +50,11 @@ class Pharmazon extends StatelessWidget {
       builder: (context, state) {
         return MaterialApp.router(
           theme: ThemeData().copyWith(
-              colorScheme:
-                  ColorScheme.fromSeed(seedColor: const Color(0xFF17C381))),
+              appBarTheme: const AppBarTheme(
+                color: Color.fromARGB(255, 3, 228, 142),
+              ),
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color.fromARGB(255, 3, 228, 142))),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,
