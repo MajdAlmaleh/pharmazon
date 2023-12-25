@@ -18,6 +18,7 @@ class OrderViewBody extends StatefulWidget {
   State<OrderViewBody> createState() => _OrderViewBodyState();
 }
 
+    bool isPressed = false;
 class _OrderViewBodyState extends State<OrderViewBody> {
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,8 @@ class _OrderViewBodyState extends State<OrderViewBody> {
         BlocConsumer<OrderCubit, OrderState>(
           listener: (context, state) {
             if (state is OrderSuccess) {
-              customSnackBar(context, state.orderItems);
               context.pop();
+              customSnackBar(context, state.orderItems);
             }
           },
           builder: (context, state) {
@@ -49,15 +50,21 @@ class _OrderViewBodyState extends State<OrderViewBody> {
               );
             }
             return const Center(
-              child: Text('No medicines in the cart yet'),
+              child: Center(child: Text('No medicines in the cart yet')),
             );
           },
         ),
         if (BlocProvider.of<CartCubit>(context).getOrderMedicines().isNotEmpty)
+        if(!isPressed)
           ElevatedButton(
               onPressed: () {
+                setState(() {
+                isPressed = true;
+                  
+                });
                 BlocProvider.of<OrderCubit>(context).postDelivery();
                 BlocProvider.of<CartCubit>(context).resetItems();
+                isPressed = false;
               },
               child: const Text('send order'))
       ],

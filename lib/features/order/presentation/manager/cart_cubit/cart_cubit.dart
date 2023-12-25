@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/order/data/models/order_item_model.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_state.dart';

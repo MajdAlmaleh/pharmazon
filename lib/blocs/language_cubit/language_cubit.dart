@@ -13,12 +13,12 @@ class LanguageCubit extends Cubit<String> {
     emit(language);
   }
 
-  Future<void> changeLanguage() async {
-    if (state == kEnglish) {
-      emit(kArabic);
-    } else if (state == kArabic) {
-      emit(kEnglish);
-    }
+  Future<void> changeLanguage({required String toLanguage}) async {
+   // if (state == toLanguage ==kEnglish) {
+      emit(toLanguage);
+   // } else if (state == kArabic) {
+   //   emit(kEnglish);
+   // }
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('language', state);
   }

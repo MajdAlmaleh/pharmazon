@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/widgets/classifications_grid_view.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
@@ -25,7 +27,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      
       child: Column(
         children: [
           BlocBuilder<ClassificationsCubit, ClassificationsState>(
@@ -36,8 +37,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               }
               if (state is ClassificationsSuccess) {
                 return Expanded(
-                  child: ClassificationsGridView(
-                    classifications: state.classifications,
+                  child: LiquidPullToRefresh(
+                    color: kAppColor,
+                    onRefresh: () async {
+                     await BlocProvider.of<ClassificationsCubit>(context)
+                          .fetchClassifications();
+                    },
+                    child: ClassificationsGridView(
+                      classifications: state.classifications,
+                    ),
                   ),
                 );
               }
@@ -57,7 +65,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   );
             },
           ),
-     
         ],
       ),
     );

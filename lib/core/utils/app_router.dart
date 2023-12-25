@@ -1,11 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
+import 'package:pharmazon/core/widgets/medicine_details.dart';
 import 'package:pharmazon/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon/features/auth/presentation/views/auth_view.dart';
-import 'package:pharmazon/core/widgets/medicine_details.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
 import 'package:pharmazon/features/home/presentation/manager/favorite_item/favorite_item_cubit.dart';
@@ -71,7 +70,6 @@ abstract class AppRouter {
                     ),
                   ),
                   BlocProvider(
-                    //TODO here make it from the token or from fetching via token
                     create: (context) =>
                         DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
                     child: const OrdersView(),
@@ -156,7 +154,6 @@ abstract class AppRouter {
       GoRoute(
         path: kOrdersView,
         builder: (context, state) => BlocProvider(
-          //TODO here make it from the token or from fetching via token
           create: (context) =>
               DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
           child: const OrdersView(),

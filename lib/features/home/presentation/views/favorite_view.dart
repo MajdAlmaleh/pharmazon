@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharmazon/features/home/presentation/views/widgets/home_drawrer.dart';
 
 import 'widgets/favorites_view_body.dart';
 

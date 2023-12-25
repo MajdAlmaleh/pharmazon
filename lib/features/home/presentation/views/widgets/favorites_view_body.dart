@@ -23,7 +23,7 @@ class FavoritesViewBody extends StatelessWidget {
 
         if (state is FavoriteItemSuccess) {
           if (state.pharmaceutical.isEmpty) {
-            return Text('no Items');
+            return const Center(child: Text('no favorites yet!'));
           }
           return MedicinesListView(medicines: state.pharmaceutical);
         }

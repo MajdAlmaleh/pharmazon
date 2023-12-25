@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/features/home/presentation/manager/favorite_item/favorite_item_cubit.dart';
 import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
-import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 
 class MedicineBubble extends StatefulWidget {
   const MedicineBubble({

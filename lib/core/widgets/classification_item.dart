@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
+import 'package:pharmazon/core/utils/assets.dart';
 
 class ClassificationItem extends StatelessWidget {
   const ClassificationItem({
@@ -10,33 +12,46 @@ class ClassificationItem extends StatelessWidget {
 
   final String classificotionName;
 
- 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ()  {
-        GoRouter.of(context).push(AppRouter.kMedicinesView,extra: classificotionName);
-   
-      },
-      child: Stack(
-        children: [
-          Image.asset(
-            'assets/images/medicine.jpg',
-            height: 200,
-            fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        color: kAppColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 5,
+        child: InkWell(
+          onTap: () {
+            GoRouter.of(context)
+                .push(AppRouter.kMedicinesView, extra: classificotionName);
+          },
+          child: Column(
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Image.asset(
+                      AssetsData.medicine2,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                color: kAppColor,
+                child: Text(
+                  classificotionName,
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+            ],
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.4),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              classificotionName,
-              style: const TextStyle(fontSize: 30, color: Colors.white),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

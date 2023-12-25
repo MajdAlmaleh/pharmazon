@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pharmazon/core/utils/app_router.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
-import 'package:pharmazon/features/order/data/models/date_model.dart';
 import 'package:pharmazon/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
 
 import 'date_list_view_item.dart';
@@ -33,15 +32,23 @@ class OrdersViewBody extends StatelessWidget {
               }
 
               return Expanded(
-                child: ListView.builder(
-                  itemCount: state.dates.length,
-                  itemBuilder: (context, index) {
-                    return DateListViewItem(date:state.dates[state.dates.length-index-1]);
+                child: LiquidPullToRefresh(
+                  color: kAppColor,
+                  onRefresh: () async {
+                 await   BlocProvider.of<DatesCubit>(context).fetchDateFromUser();
                   },
+                  child: ListView.builder(
+                    itemCount: state.dates.length,
+                    itemBuilder: (context, index) {
+                      return DateListViewItem(
+                          date: state.dates[state.dates.length - index - 1]);
+                    },
+                  ),
                 ),
               );
             }
-            return const Center(child: Text('there is no orders'));
+            return const Center(
+                child: Center(child: Text('there is no orders')));
           },
         ),
       ],

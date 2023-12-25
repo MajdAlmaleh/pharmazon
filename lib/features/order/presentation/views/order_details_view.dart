@@ -13,7 +13,7 @@ class OrderDetailsView extends StatelessWidget {
       appBar: AppBar(
         title: Text(dateModel.date!.split('T')[0]),
       ),
-      body: const OrderDetailsViewBody(),
+      body:  OrderDetailsViewBody(dateModel: dateModel),
     );
   }
 }
