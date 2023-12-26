@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharmazon/blocs/language_cubit/language_cubit.dart';
 import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
-import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon/features/home/presentation/manager/favorite_item/favorite_item_cubit.dart';
 import 'package:pharmazon/features/order/data/repos/order_repo_impl.dart';
@@ -51,10 +51,10 @@ class Pharmazon extends StatelessWidget {
         return MaterialApp.router(
           theme: ThemeData().copyWith(
               appBarTheme: const AppBarTheme(
-                color: Color.fromARGB(255, 3, 228, 142),
+                color: kAppColor,
               ),
               colorScheme: ColorScheme.fromSeed(
-                  seedColor: const Color.fromARGB(255, 3, 228, 142))),
+                  seedColor: kAppColor)),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

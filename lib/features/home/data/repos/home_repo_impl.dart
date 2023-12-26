@@ -5,7 +5,6 @@ import 'package:pharmazon/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/errors/failures.dart';
 import 'package:pharmazon/core/shared_models/classifications_model.dart';
-import 'package:pharmazon/core/shared_models/medicine_model.dart';
 import 'package:pharmazon/core/utils/api_service.dart';
 import 'package:pharmazon/features/home/data/repos/home_repo.dart';
 import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
@@ -23,7 +22,7 @@ class HomeRepoImpl implements HomeRepo {
           body: {
             'api_token': tokenCubit.state,
           },
-          token: null
+          token: tokenCubit.state
 
           // Replace with your token if needed
           );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'widgets/order_view_body.dart';
 
@@ -9,12 +10,9 @@ class OrderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Order'),
+        title: Text(S.of(context).myOrder),
       ),
-      //  drawer: const HomeDrawrer(
-      //    pageName: 'cart',
-      //  ),
-        body: const OrderViewBody(),
+      body: const OrderViewBody(),
     );
   }
 }

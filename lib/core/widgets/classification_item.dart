@@ -42,8 +42,11 @@ class ClassificationItem extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
                 color: kAppColor,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   classificotionName,
                   style: const TextStyle(fontSize: 20, color: Colors.white),

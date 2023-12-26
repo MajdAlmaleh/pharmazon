@@ -67,11 +67,16 @@ class ApiService {
   Future<dynamic> post(
       {required String url,
       @required dynamic body,
-      @required String? token}) async {
+      @required String? token,
+       double? header,
+      }) async {
     Map<String, String> headers = {'Accept': 'application/json'};
 
     if (token != null) {
       headers.addAll({'Authorization': token});
+    }
+    if (header != null) {
+      headers.addAll({'Price': header.toString()});
     }
 
     Response response = await _dio.post(

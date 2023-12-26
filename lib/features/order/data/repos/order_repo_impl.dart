@@ -18,13 +18,15 @@ class OrderRepoImpl implements OrderRepo {
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> postDelivery(
-      List<OrderItemModel?> orderItems) async {
+      List<OrderItemModel?> orderItems,double totalPrice) async {
     try {
     
       final data = await _apiService.post(
           url: '$kBaseUrl/order',
           token: tokenCubit.state,
-          body: {"order": orderItems});
+          body: {"order": orderItems},
+          header: totalPrice
+          );
       // List<OrderItemModel> medicines = [];
       // print(data);
       // for (var item in data['order']) {

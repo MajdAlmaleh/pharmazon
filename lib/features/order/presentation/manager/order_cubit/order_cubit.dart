@@ -12,7 +12,7 @@ class OrderCubit extends Cubit<OrderState> {
   void postDelivery() async {
     emit(OrderLoading());
 
-    final result = await orderRepo.postDelivery(cartCubit.orderItems);
+    final result = await orderRepo.postDelivery(cartCubit.orderItems,cartCubit.totalPrice);
 
     result.fold((failure) {
       emit(OrderFailure(errMessage: failure.errMessage));

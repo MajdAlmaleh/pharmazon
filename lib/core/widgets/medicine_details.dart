@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class MedicineDetails extends StatefulWidget {
   const MedicineDetails({super.key, required this.medicineModel});
@@ -16,7 +17,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medicine Details'),
+        title:  Text('${S.of(context).medicineDetailsfor} ${widget.medicineModel.commercialName}' ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -29,19 +30,18 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Name: ${widget.medicineModel.commercialName!}',
+                  Text('${S.of(context).commercialName}: ${widget.medicineModel.commercialName!}',
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
                   Text(
-                      'Classification: ${widget.medicineModel.calssification!}'),
-                  Text('Expire Date: ${widget.medicineModel.expireDate!}'),
-                  Text('ID: ${widget.medicineModel.id.toString()}'),
-                  Text('Price: ${widget.medicineModel.price.toString()}'),
+                      '${S.of(context).calssification}: ${widget.medicineModel.calssification!}'),
+                  Text('${S.of(context).expireDate}: ${widget.medicineModel.expireDate!}'),
+                  Text('${S.of(context).price}: ${widget.medicineModel.price.toString()}'),
                   Text(
-                      'Manufacturer: ${widget.medicineModel.manufactureCompany!}'),
+                      '${S.of(context).manufactureCompany}: ${widget.medicineModel.manufactureCompany!}'),
                   Text(
-                      'Quantity Available: ${widget.medicineModel.quantityAvailable.toString()}'),
+                      '${S.of(context).quantityAvailable}: ${widget.medicineModel.quantityAvailable.toString()}'),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +55,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                         icon: const Icon(Icons.add),
                       ),
                       const SizedBox(width: 10),
-                  Text('Quantity in Cart: ${BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
+                  Text('${S.of(context).quantityInCart}: ${BlocProvider.of<CartCubit>(context).getItemQuatity(widget.medicineModel.id!)}'),
                       const SizedBox(width: 10),
                       IconButton(
                         onPressed: () {

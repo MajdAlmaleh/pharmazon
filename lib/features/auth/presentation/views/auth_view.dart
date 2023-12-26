@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/constants.dart';
 
 import 'widgets/auth_view_body.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({
     super.key,
-    required this.authType,
+     this.authType=kSignIn,
   });
   final String authType;
   @override
@@ -17,8 +18,8 @@ class AuthView extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             colors: [
-              Color(0xFF17C381),
-              Color(0xFF17C381),
+            kAppColor,
+              kAppColor,
             ],
           ),
         ),

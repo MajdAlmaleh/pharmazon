@@ -5,7 +5,7 @@ import 'package:pharmazon/features/order/data/models/order/order.details.dart';
 import 'package:pharmazon/features/order/data/models/order_item_model.dart';
 
 abstract class OrderRepo {
-  Future<Either<Failure,  Map<String,dynamic>>> postDelivery( List<OrderItemModel?> orderItems );
+  Future<Either<Failure,  Map<String,dynamic>>> postDelivery( List<OrderItemModel?> orderItems ,double totalPrice);
     Future<Either<Failure,  List<DateModel>>> getDatesFromUser();
   Future<Either<Failure,  OrderDetails>> getOrderDetailsFromDate({required  DateModel dateModel});
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/features/auth/presentation/views/variables/variables.dart';
 import 'package:pharmazon/features/auth/presentation/views/widgets/auth_text_field.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class PasswordTextField extends StatelessWidget {
   const PasswordTextField({
@@ -17,22 +19,22 @@ class PasswordTextField extends StatelessWidget {
           obscureText: hidePassword,
           prefixIcon: const Icon(
             Icons.password,
-            color: Color(0xFF2AEBA4),
+            color: kAppColor,
           ),
           suffixIcon: IconButton(
             icon: Icon(
               hidePassword ? Icons.visibility_off : Icons.visibility,
-              color: const Color(0xFF2AEBA4),
+              color: kAppColor,
             ),
             onPressed: viewPasswordState,
           ),
           textInputType: TextInputType.visiblePassword,
-          phoneNumberValidator: passwordValidator,
+          phoneNumberValidator: (value) => passwordValidator!(value, context),
           onSave: (newValue) {
             password = newValue!;
           },
           formatter: passwordFormatter,
-          hintText: "Enter your password"),
+          hintText: S.of(context).enterYourPassword),
     );
   }
 }

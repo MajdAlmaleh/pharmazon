@@ -4,6 +4,7 @@ import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
 import 'package:pharmazon/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon/features/home/presentation/views/widgets/medicines_list_view.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class MedicinesViewBody extends StatefulWidget {
   final String classificationName;
@@ -41,7 +42,7 @@ class _MedicinesViewBodyState extends State<MedicinesViewBody> {
         if (state is MedicineFromClassSuccess) {
           return MedicinesListView(medicines: state.medicineFromClass,);
         }
-        return const Text('there is no medicines to show'); 
+        return  Text(S.of(context).ThereIsNoMedicines); 
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
@@ -8,6 +9,7 @@ import 'package:pharmazon/features/home/presentation/views/widgets/medicines_lis
 import 'package:pharmazon/features/order/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_cubit.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_cubit/order_state.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class OrderViewBody extends StatefulWidget {
   const OrderViewBody({
@@ -18,7 +20,8 @@ class OrderViewBody extends StatefulWidget {
   State<OrderViewBody> createState() => _OrderViewBodyState();
 }
 
-    bool isPressed = false;
+bool isPressed = false;
+
 class _OrderViewBodyState extends State<OrderViewBody> {
   @override
   Widget build(BuildContext context) {
@@ -46,27 +49,45 @@ class _OrderViewBodyState extends State<OrderViewBody> {
                 child: MedicinesListView(
                   medicines: medicines,
                   isOrder: true,
+                  isCart: true,
                 ),
               );
             }
-            return const Center(
-              child: Center(child: Text('No medicines in the cart yet')),
+            return  Center(
+              child: Center(child: Text(S.of(context).ThereIsNoMedicines)),
             );
           },
         ),
+        SizedBox(
+          width: double.infinity,
+          height: 2,
+          child: Container(
+            color: kAppColor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              
+               Text(S.of(context).totalPrice),
+              const Spacer(),
+              Text(BlocProvider.of<CartCubit>(context).getTotalPrice().toString())
+            ],
+          ),
+        ),
         if (BlocProvider.of<CartCubit>(context).getOrderMedicines().isNotEmpty)
-        if(!isPressed)
-          ElevatedButton(
-              onPressed: () {
-                setState(() {
-                isPressed = true;
-                  
-                });
-                BlocProvider.of<OrderCubit>(context).postDelivery();
-                BlocProvider.of<CartCubit>(context).resetItems();
-                isPressed = false;
-              },
-              child: const Text('send order'))
+          if (!isPressed)
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    isPressed = true;
+                  });
+                  BlocProvider.of<OrderCubit>(context).postDelivery();
+                  BlocProvider.of<CartCubit>(context).resetItems();
+                  isPressed = false;
+                },
+                child:  Text(S.of(context).sendOrder))
       ],
     );
   }

@@ -17,7 +17,7 @@ class SearchOptionItem extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -31,7 +32,7 @@ class CustomSearchBar extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          hintText: 'Search',
+          hintText: S.of(context).search,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           border: InputBorder.none,

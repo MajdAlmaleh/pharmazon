@@ -6,6 +6,7 @@ import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/features/order/presentation/views/widgets/orders_view_body.dart';
 import 'package:pharmazon/features/search/presentation/views/widgets/search_view_body.dart';
 import 'package:pharmazon/features/settings/presentation/views/widgets/settings_view_body.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'widgets/home_view_body.dart';
 
@@ -28,14 +29,15 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ConvexAppBar(
+        height: 54,
         backgroundColor: kAppColor,
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color:  Colors.white,
         initialActiveIndex: 0,
-        items: const [
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.search, title: 'Search'),
-          TabItem(icon: Icons.shopping_cart, title: 'Orders'),
-            TabItem(icon: Icons.settings, title: 'Settings'),
+        items:  [
+          TabItem(icon: Icons.home, title: S.of(context).home),
+          TabItem(icon: Icons.search, title: S.of(context).search),
+          TabItem(icon: Icons.shopping_cart, title: S.of(context).orders),
+            TabItem(icon: Icons.settings, title: S.of(context).settings),
         ],
         onTap: (index) {
           setState(() {
@@ -44,7 +46,7 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
       appBar: AppBar(
-        title: const Text('Pharmazon'),
+        title:  Text(S.of(context).pharmazon),
         actions: [
           IconButton(
             icon: const Icon(Icons.favorite),

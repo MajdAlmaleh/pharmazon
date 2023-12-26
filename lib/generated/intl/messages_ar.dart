@@ -22,7 +22,67 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Language": MessageLookupByLibrary.simpleMessage("اللغة:"),
+        "ThereIsNoMedicines":
+            MessageLookupByLibrary.simpleMessage("لا يوجد ادوية"),
+        "addItem": MessageLookupByLibrary.simpleMessage("اضافة عنصر"),
+        "calssification": MessageLookupByLibrary.simpleMessage("التصنيف"),
+        "cancel": MessageLookupByLibrary.simpleMessage("ملغى"),
+        "commercialName": MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
+        "datesOfOrders": MessageLookupByLibrary.simpleMessage("تواريخ الطلبات"),
+        "doNotHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "editTheQuantity": MessageLookupByLibrary.simpleMessage("تعديل الكمية"),
+        "enterYourPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الخاصة بك"),
+        "enterYourPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "enterYourUsername":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم الخاص بك"),
+        "expireDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
+        "favoraites": MessageLookupByLibrary.simpleMessage("المفضلات"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "inPreparation": MessageLookupByLibrary.simpleMessage("قيد التحضير"),
+        "inProcess": MessageLookupByLibrary.simpleMessage("قيد المعالجة"),
         "language": MessageLookupByLibrary.simpleMessage("عربي"),
-        "title": MessageLookupByLibrary.simpleMessage("هلوز")
+        "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "manufactureCompany":
+            MessageLookupByLibrary.simpleMessage("شركة التصنيع"),
+        "medicineDetailsfor":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الدواء لـ"),
+        "myOrder": MessageLookupByLibrary.simpleMessage("طلبي"),
+        "noFavoritesYet":
+            MessageLookupByLibrary.simpleMessage("لا توجد مفضلات بعد!"),
+        "orders": MessageLookupByLibrary.simpleMessage("الطلبيات"),
+        "paid": MessageLookupByLibrary.simpleMessage("مدفوع"),
+        "passwordShouldBeAtLest8Characters":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تكون كلمة المرور 8 أحرف على الأقل"),
+        "pharmazon": MessageLookupByLibrary.simpleMessage("فارمازون"),
+        "phoneNumberShouldBe10DigitsAndStartWith09":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون رقم الهاتف 10 أرقام ويبدأ بـ 09"),
+        "price": MessageLookupByLibrary.simpleMessage("السعر"),
+        "quantityAvailable":
+            MessageLookupByLibrary.simpleMessage("الكمية المتوفرة"),
+        "quantityInCart":
+            MessageLookupByLibrary.simpleMessage("الكمية في السلة"),
+        "quantityUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث الكمية بنجاح"),
+        "scientificName": MessageLookupByLibrary.simpleMessage("الاسم العلمي"),
+        "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "send": MessageLookupByLibrary.simpleMessage("أرسل"),
+        "sendOrder": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
+        "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signUp": MessageLookupByLibrary.simpleMessage("تسجيل"),
+        "thereIsNoOrders":
+            MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "title": MessageLookupByLibrary.simpleMessage("مرحبا بك في فارمازون"),
+        "totalPrice": MessageLookupByLibrary.simpleMessage("السعر الإجمالي:"),
+        "unPaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),
+        "usernameShouldBeAtLest10Characters":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون الاسم المستخدم 10 أحرف على الأقل")
       };
 }

@@ -12,7 +12,6 @@ class MedicinesView extends StatelessWidget {
       appBar: AppBar(
         title: Text(classificationName),
       ),
-      //  drawer: const HomeDrawrer(),
       body: MedicinesViewBody(
         classificationName: classificationName,
       ),

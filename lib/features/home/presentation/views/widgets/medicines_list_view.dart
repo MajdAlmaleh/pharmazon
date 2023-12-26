@@ -5,10 +5,12 @@ import 'package:pharmazon/features/order/data/models/order/pharmaceutical.detail
 class MedicinesListView extends StatelessWidget {
   final List<Pharmaceutical> medicines;
   final bool isOrder;
+  final bool isCart;
   const MedicinesListView({
     super.key,
     required this.medicines,
     this.isOrder = false,
+    this.isCart=false,
   });
 
   @override
@@ -19,6 +21,7 @@ class MedicinesListView extends StatelessWidget {
         return MedicineBubble(
           medicineModel: medicines[index],
           isOrder: isOrder,
+          isCart: isCart,
         );
       },
     );

@@ -7,6 +7,7 @@ import 'package:pharmazon/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
 import 'package:pharmazon/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon/features/auth/presentation/views/variables/variables.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'password_text_field.dart';
 import 'phone_number_text_field.dart';
@@ -51,7 +52,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Text(
-                  isSignIn ? 'Sign In' : 'Sign Up',
+                  isSignIn ? S.of(context).signIn : S.of(context).signUp,
                   style: const TextStyle(color: Colors.white, fontSize: 60),
                 ),
               ),
@@ -75,12 +76,12 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                             if (!isSignIn)
                               const Padding(
                                 padding: EdgeInsets.only(
-                                    top: 120, right: 10, left: 10),
+                                    top: 80, right: 10, left: 10),
                                 child: UsernameTextField(),
                               ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: isSignIn ? 120 : 40,
+                                  top: isSignIn ? 80 : 10,
                                   right: 10,
                                   left: 10),
                               child: const PhoneNumberTextField(),
@@ -90,7 +91,11 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                 hidePassword = !hidePassword;
                               });
                             }),
-                             SignButton(text: isSignIn ? 'Sign In' : 'Sign Up',),
+                            SignButton(
+                              text: isSignIn
+                                  ? S.of(context).signIn
+                                  : S.of(context).signUp,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                 top: 50,
@@ -98,9 +103,9 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
-                                    "Do not have an account ?",
-                                    style: TextStyle(fontSize: 20),
+                                  Text(
+                                    S.of(context).doNotHaveAnAccount,
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                   GestureDetector(
                                     onTap: () {
@@ -110,9 +115,11 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                       });
                                     },
                                     child: Text(
-                                      !isSignIn ? 'Sign In' : 'Sign Up',
+                                      !isSignIn
+                                          ? S.of(context).signIn
+                                          : S.of(context).signUp,
                                       style: const TextStyle(
-                                          color: Colors.green, fontSize: 20),
+                                          color: kAppColor, fontSize: 20),
                                     ),
                                   ),
                                 ],

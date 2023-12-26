@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pharmazon/constants.dart';
 import 'package:pharmazon/core/utils/service_locator.dart';
 import 'package:pharmazon/core/widgets/medicine_details.dart';
 import 'package:pharmazon/features/auth/data/repos/auth_repo_impl.dart';
@@ -24,10 +25,8 @@ import 'package:pharmazon/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/views/search_view.dart';
-import 'package:pharmazon/features/welcome/views/welcome_view.dart';
 
 abstract class AppRouter {
-  static const kWelcomeView = '/welcomeView';
   static const kAuthView = '/authView';
   static const kHomeView = '/homeView';
   static const kMedicinesView = '/medicinesView';
@@ -45,7 +44,10 @@ abstract class AppRouter {
       if (token == null)
         GoRoute(
           path: '/',
-          builder: (context, state) => const WelcomeView(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => AuthCubit(getIt<AuthRepoImpl>()),
+            child: const AuthView(authType: kSignIn),
+          ),
         ),
       if (token != null)
         GoRoute(
@@ -74,19 +76,13 @@ abstract class AppRouter {
                         DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
                     child: const OrdersView(),
                   ),
-                  
-                  
                 ], child: const HomeView())),
-      GoRoute(
-        path: kWelcomeView,
-        builder: (context, state) => const WelcomeView(),
-      ),
       GoRoute(
         path: kAuthView,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(getIt<AuthRepoImpl>()),
-          child: AuthView(
-            authType: state.extra as String,
+          child: const AuthView(
+            authType: kSignIn,
           ),
         ),
       ),
@@ -116,8 +112,6 @@ abstract class AppRouter {
                     getIt<SearchRepoImpl>(),
                   ),
                 ),
-                
-                
               ], child: const HomeView())),
       GoRoute(
         path: kSearchView,
@@ -144,6 +138,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
+        /////////////////////////////////
         path: kMedicinesView,
         builder: (context, state) => BlocProvider(
           create: (context) => MedicineFromClassCubit(getIt<HomeRepoImpl>()),

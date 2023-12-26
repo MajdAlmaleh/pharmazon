@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmazon/features/order/presentation/views/widgets/orders_view_body.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 class OrdersView extends StatelessWidget {
   const OrdersView({
@@ -10,11 +11,9 @@ class OrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Dates of orders'),
+          title:  Text(S.of(context).datesOfOrders),
         ),
-        //  drawer: const HomeDrawrer(
-        //  pageName: 'cart',
-        // ),
+   
         body: const OrdersViewBody());
   }
 }

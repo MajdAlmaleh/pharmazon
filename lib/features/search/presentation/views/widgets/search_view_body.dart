@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/views/widgets/custom_search_bar.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'classifications_search_items.dart';
 import 'commercial_name_search_items.dart';
@@ -62,7 +63,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   }
                 },
                 child: SearchOptionItem(
-                  text: 'Classifications',
+                  text: S.of(context).calssification,
                   color: isClassifications ? Colors.grey : Colors.white,
                 ),
               ),
@@ -77,7 +78,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   }
                 },
                 child: SearchOptionItem(
-                  text: 'Comercial name',
+                  text: S.of(context).commercialName,
                   color: !isClassifications ? Colors.grey : Colors.white,
                 ),
               ),

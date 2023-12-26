@@ -7,6 +7,10 @@ import 'package:pharmazon/core/widgets/custom_loading.dart';
 import 'package:pharmazon/features/home/presentation/views/widgets/medicines_list_view.dart';
 import 'package:pharmazon/features/order/data/models/date_model.dart';
 import 'package:pharmazon/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
+import 'package:pharmazon/generated/l10n.dart';
+
+late String orderState;
+late String orderPayment;
 
 class OrderDetailsViewBody extends StatelessWidget {
   final DateModel dateModel;
@@ -27,8 +31,52 @@ class OrderDetailsViewBody extends StatelessWidget {
         }
         if (state is OrderDetailsSuccess) {
           if (state.orderDetails.pharmaceuticals!.isEmpty) {
-            return const Text('empty');
+            return Text(S.of(context).ThereIsNoMedicines);
           }
+          switch (state.orderDetails.order!.status.toString()) {
+            case 'cancel':
+              {
+                orderState = S.of(context).cancel;
+                break;
+              }
+            case 'in process':
+              {
+                orderState = S.of(context).inProcess;
+                break;
+              }
+            case 'in preparation':
+              {
+                orderState = S.of(context).inPreparation;
+                break;
+              }
+            case 'send':
+              {
+                orderState = S.of(context).send;
+                break;
+              }
+            default:
+              {
+                orderState = 'error';
+              }
+          }
+          switch (state.orderDetails.order!.payment) {
+            case 'paid':
+              {
+                orderPayment = S.of(context).paid;
+                break;
+              }
+            case 'unpaid':
+              {
+                orderPayment = S.of(context).unPaid;
+                break;
+              }
+
+            default:
+              {
+                orderPayment = 'error';
+              }
+          }
+
           return Card(
               child: LiquidPullToRefresh(
             color: kAppColor,
@@ -48,7 +96,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                     elevation: MaterialStateProperty.all<double>(0),
                   ),
                   child: Text(
-                    state.orderDetails.order!.status.toString(),
+                    orderState,
                     style: const TextStyle(fontSize: 24, color: Colors.white),
                   ),
                 ),
@@ -62,7 +110,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                     elevation: MaterialStateProperty.all<double>(0),
                   ),
                   child: Text(
-                    state.orderDetails.order!.payment.toString(),
+                    orderPayment,
                     style: const TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
@@ -75,24 +123,7 @@ class OrderDetailsViewBody extends StatelessWidget {
             ),
           ));
         }
-        return const Center(child: Text('there is no clients'));
-
-        // return Expanded(
-        //   child: ListView.builder(
-        //     itemCount: 5,
-        //     itemBuilder: (context, index) {
-        //       return Card(
-        //         child: ListTile(
-        //           title: const Text('state.clients[index].clientName!'),
-        //           onTap: () {
-        //             //todo navigate to detalis
-        //           //  context.go('location');
-        //           },
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // );
+        return  Center(child: Text(S.of(context).ThereIsNoMedicines));
       },
     );
   }

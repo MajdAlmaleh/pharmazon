@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/constants.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
@@ -15,7 +16,7 @@ class AuthButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        // backgroundColor: const Color(0xFF17C381),
+         backgroundColor: kAppColor,
         minimumSize: const Size(300, 70),
       ),
       child: Text(
