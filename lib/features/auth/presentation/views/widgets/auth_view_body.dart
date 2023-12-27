@@ -37,7 +37,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            GoRouter.of(context).push(AppRouter.kHomeView);
+            GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
           }
           if (state is AuthFailure) {
             customSnackBar(context, state.errMessage);
