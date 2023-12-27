@@ -1,6 +1,7 @@
 // orders_view_body.dart
 
 import 'package:flutter/material.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'tab_item.dart';
 
@@ -19,9 +20,9 @@ class TabBarWidget extends StatelessWidget {
         indicatorColor: Colors.transparent,
         unselectedLabelColor: Colors.grey[700],
         dividerColor: Colors.grey,
-        tabs: const [
-          TabItem(label: 'All'),
-          TabItem(label: 'Reports'),
+        tabs:  [
+          TabItem(label: S.of(context).all),
+          TabItem(label: S.of(context).reports),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'widgets/sales_report_view_body.dart';
 
@@ -10,7 +11,7 @@ class SalesReportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sales Report of $date'),
+        title: Text('${S.of(context).salesReportOf} $date'),
       ),
       body: const SalesReportViewBody(),
     );

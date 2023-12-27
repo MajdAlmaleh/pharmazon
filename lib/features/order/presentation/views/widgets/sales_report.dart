@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pharmazon/core/utils/app_router.dart';
 import 'package:pharmazon/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon/core/widgets/custom_button.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 
 class SalesReport extends StatefulWidget {
@@ -28,7 +29,7 @@ class SalesReportState extends State<SalesReport> {
             children: [
               const Spacer(),
                  DropdownButton(
-                  hint: const Text('select month'),
+                  hint:  Text(S.of(context).selectMonth),
                   value: selectedMonth,
                   items: [
                     for (var i = 1; i <= 12; i++)
@@ -42,7 +43,7 @@ class SalesReportState extends State<SalesReport> {
                 ),
                 const Spacer(),
                 DropdownButton(
-                  hint: const Text('select year'),
+                  hint:  Text(S.of(context).selectYear),
                   value: selectedYear,
                   items: [
                     for (var i = 0; i <= 3; i++)
@@ -61,7 +62,7 @@ class SalesReportState extends State<SalesReport> {
           const Spacer(),
           CustomButton(
             onPressed: () => _onShowReportButtonPressed(context),
-            text: 'Show Report',
+            text: S.of(context).showReport,
           ),
           const Spacer(),
         ],
@@ -72,7 +73,7 @@ class SalesReportState extends State<SalesReport> {
   void _onShowReportButtonPressed(BuildContext context) {
     if (selectedMonth == null || selectedYear == null) {
       ScaffoldMessenger.of(context).clearSnackBars;
-      customSnackBar(context, 'Please select month and year');
+      customSnackBar(context, S.of(context).pleaseSelectMonthAndYear);
       return;
     }
     context.push(AppRouter.kSalesReportFromDate,

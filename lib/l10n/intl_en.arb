@@ -42,5 +42,14 @@
     "inPreparation":"In Preparation",
     "send":"Sent",
     "paid":"Paid",
-    "unPaid":"Unpaid"
+    "unPaid":"Unpaid",
+    "selectMonth":"Select Month",
+    "selectYear":"Select Year",
+    "showReport":"Show Report",
+    "pleaseSelectMonthAndYear":"Please select month and year",
+    "all":"All",
+    "reports":"Reports",
+    "thereIsNoMedicinesForThisMonth":"There is no medicines for this month",
+    "totalPaidForThisMonth":"Total Paid for this month:",
+    "salesReportOf":"Sales Report of"
 }

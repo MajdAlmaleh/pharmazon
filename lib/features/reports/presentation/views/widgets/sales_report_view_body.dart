@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon/core/widgets/custom_error.dart';
 import 'package:pharmazon/core/widgets/custom_loading.dart';
 import 'package:pharmazon/features/reports/presentation/manager/sales_cubit/sales_report_cubit.dart';
+import 'package:pharmazon/generated/l10n.dart';
 
 import 'date_report_list_view_item.dart';
 
@@ -23,8 +24,8 @@ class SalesReportViewBody extends StatelessWidget {
         }
         if (state is SalesReportSuccess) {
           if (state.saleReportModel.orders!.isEmpty) {
-            return const CustomError(
-                errMessage: 'there is no medicines for this month');
+            return CustomError(
+                errMessage: S.of(context).thereIsNoMedicinesForThisMonth);
           }
           return Column(
             children: [
@@ -34,9 +35,9 @@ class SalesReportViewBody extends StatelessWidget {
                   child: Row(
                     children: [
                       const Spacer(),
-                      const Text(
-                        'Total Paid for this month:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Text(
+                        S.of(context).totalPaidForThisMonth,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
                       Text(double.parse(

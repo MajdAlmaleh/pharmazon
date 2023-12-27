@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ThereIsNoMedicines":
             MessageLookupByLibrary.simpleMessage("There are no medicines"),
         "addItem": MessageLookupByLibrary.simpleMessage("Add Item"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "calssification":
             MessageLookupByLibrary.simpleMessage("Classification"),
         "cancel": MessageLookupByLibrary.simpleMessage("Canceled"),
@@ -66,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberShouldBe10DigitsAndStartWith09":
             MessageLookupByLibrary.simpleMessage(
                 "Phone number should be 10 digits and start with 09"),
+        "pleaseSelectMonthAndYear": MessageLookupByLibrary.simpleMessage(
+            "Please select month and year"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "quantityAvailable":
             MessageLookupByLibrary.simpleMessage("Available Quantity"),
@@ -73,17 +76,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Quantity in Cart"),
         "quantityUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Quantity updated successfully"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "salesReportOf":
+            MessageLookupByLibrary.simpleMessage("Sales Report of"),
         "scientificName":
             MessageLookupByLibrary.simpleMessage("Scientific Name"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "selectMonth": MessageLookupByLibrary.simpleMessage("Select Month"),
+        "selectYear": MessageLookupByLibrary.simpleMessage("Select Year"),
         "send": MessageLookupByLibrary.simpleMessage("Sent"),
         "sendOrder": MessageLookupByLibrary.simpleMessage("Send Order"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showReport": MessageLookupByLibrary.simpleMessage("Show Report"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "thereIsNoMedicinesForThisMonth": MessageLookupByLibrary.simpleMessage(
+            "There is no medicines for this month"),
         "thereIsNoOrders":
             MessageLookupByLibrary.simpleMessage("There are no orders"),
         "title": MessageLookupByLibrary.simpleMessage("Welcome to pharmazon"),
+        "totalPaidForThisMonth":
+            MessageLookupByLibrary.simpleMessage("Total Paid for this month:"),
         "totalPrice": MessageLookupByLibrary.simpleMessage("Total price:"),
         "unPaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
         "usernameShouldBeAtLest10Characters":
