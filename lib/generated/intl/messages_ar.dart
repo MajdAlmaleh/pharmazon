@@ -74,7 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديث الكمية بنجاح"),
         "reports": MessageLookupByLibrary.simpleMessage("التقارير"),
         "salesReportOf":
-            MessageLookupByLibrary.simpleMessage("تقرير المبيعات لشهر"),
+            MessageLookupByLibrary.simpleMessage("تقرير المبيعات لـ"),
         "scientificName": MessageLookupByLibrary.simpleMessage("الاسم العلمي"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "selectMonth": MessageLookupByLibrary.simpleMessage("اختر الشهر"),
@@ -86,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "thereIsNoMedicinesForThisMonth":
-            MessageLookupByLibrary.simpleMessage("لا يوجد أدوية لهذا الشهر"),
+            MessageLookupByLibrary.simpleMessage("لا يوجد مبيعات لهذا الشهر"),
         "thereIsNoOrders":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
         "title": MessageLookupByLibrary.simpleMessage("مرحبا بك في فارمازون"),

@@ -48,9 +48,12 @@
     "showReport": "عرض التقرير",
     "pleaseSelectMonthAndYear": "يرجى تحديد الشهر والسنة",
     "all": "الكل",
+
     "reports": "التقارير",
-    "thereIsNoMedicinesForThisMonth": "لا يوجد أدوية لهذا الشهر",
+
+    "thereIsNoMedicinesForThisMonth": "لا يوجد مبيعات لهذا الشهر",
     "totalPaidForThisMonth": "الإجمالي المدفوع لهذا الشهر:",
-    "salesReportOf": "تقرير المبيعات لشهر"
+    "salesReportOf": "تقرير المبيعات لـ",
+    "quantityReportOf":"تقرير الكميات لـ"
   }
   

@@ -550,10 +550,10 @@ class S {
     );
   }
 
-  /// `There is no medicines for this month`
+  /// `There is no sales for this month`
   String get thereIsNoMedicinesForThisMonth {
     return Intl.message(
-      'There is no medicines for this month',
+      'There is no sales for this month',
       name: 'thereIsNoMedicinesForThisMonth',
       desc: '',
       args: [],

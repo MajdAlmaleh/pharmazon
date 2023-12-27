@@ -53,8 +53,7 @@ class Pharmazon extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 color: kAppColor,
               ),
-              colorScheme: ColorScheme.fromSeed(
-                  seedColor: kAppColor)),
+              colorScheme: ColorScheme.fromSeed(seedColor: kAppColor)),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

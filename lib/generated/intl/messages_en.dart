@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "thereIsNoMedicinesForThisMonth": MessageLookupByLibrary.simpleMessage(
-            "There is no medicines for this month"),
+            "There is no sales for this month"),
         "thereIsNoOrders":
             MessageLookupByLibrary.simpleMessage("There are no orders"),
         "title": MessageLookupByLibrary.simpleMessage("Welcome to pharmazon"),
