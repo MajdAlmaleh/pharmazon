@@ -21,6 +21,9 @@ import 'package:pharmazon/features/order/presentation/manager/order_details_cubi
 import 'package:pharmazon/features/order/presentation/views/order_details_view.dart';
 import 'package:pharmazon/features/order/presentation/views/order_view.dart';
 import 'package:pharmazon/features/order/presentation/views/orders_view.dart';
+import 'package:pharmazon/features/reports/data/repos/report_repo_impl.dart';
+import 'package:pharmazon/features/reports/presentation/manager/sales_cubit/sales_report_cubit.dart';
+import 'package:pharmazon/features/reports/presentation/views/sales_report_view.dart';
 import 'package:pharmazon/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -36,6 +39,8 @@ abstract class AppRouter {
   static const kOrdersView = '/ordersView';
   static const kOrderDetailsFromDate = '/orderDetailsFromDate';
   static const kFavoritesView = '/favoritesView';
+    static const kSalesReportFromDate = '/salesReportFromDate';
+
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -90,7 +95,6 @@ abstract class AppRouter {
           path: kHomeView,
           builder: (context, state) => MultiBlocProvider(providers: [
                 BlocProvider(
-                  //TODO here make it from the token or from fetching via token
                   create: (context) =>
                       DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromUser(),
                   child: const OrdersView(),
@@ -182,30 +186,24 @@ abstract class AppRouter {
           child: const FavoraitesView(),
         ),
       ),
+ GoRoute(
+        path: kSalesReportFromDate,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => SalesReportCubit(getIt<ReportRepoImpl>())
+                ..getSalesReportFromDate(
+                    month: int.parse((state.extra as String).split('/')[0]),
+                    year: int.parse((state.extra as String).split('/')[1])),
+            ),
+          ],
+          child:  SalesReportView(
+             date: state.extra as String,
+              ),
+        ),
+      ),
+
     ]);
   }
 
-  // static final router = GoRouter(routes: [
-  //   GoRoute(
-  //     path: '/',
-  //     builder: (context, state) => const WelcomeView(),
-  //   ),
-  //   GoRoute(
-  //     path: kAuthView,
-  //     builder: (context, state) => BlocProvider(
-  //       create: (context) => AuthCubit(getIt<AuthRepoImpl>()),
-  //       child: AuthView(
-  //         authType: state.extra as String,
-  //       ),
-  //     ),
-  //   ),
-  //   // GoRoute(
-  //   //     path: kBookDetailsView,
-  //   //     builder: (context, state) => BlocProvider(
-  //   //           create: (context) => SimilarBooksCubit(getIt<HomeRepoImpl>()),
-  //   //           child: BookDetailsView(
-  //   //             bookModel: state.extra as BookModel,
-  //   //           ),
-  //   //         )),
-  // ]);
 }
