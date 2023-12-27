@@ -53,7 +53,7 @@ class _OrderViewBodyState extends State<OrderViewBody> {
                 ),
               );
             }
-            return  Center(
+            return Center(
               child: Center(child: Text(S.of(context).ThereIsNoMedicines)),
             );
           },
@@ -69,25 +69,27 @@ class _OrderViewBodyState extends State<OrderViewBody> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              
-               Text(S.of(context).totalPrice),
+              Text(S.of(context).totalPrice),
               const Spacer(),
-              Text(BlocProvider.of<CartCubit>(context).getTotalPrice().toString())
+              Text(BlocProvider.of<CartCubit>(context)
+                  .getTotalPrice()
+                  .toStringAsFixed(2))
             ],
           ),
         ),
         if (BlocProvider.of<CartCubit>(context).getOrderMedicines().isNotEmpty)
           if (!isPressed)
             ElevatedButton(
-                onPressed: () {
+                onPressed: ()async {
                   setState(() {
                     isPressed = true;
                   });
                   BlocProvider.of<OrderCubit>(context).postDelivery();
                   BlocProvider.of<CartCubit>(context).resetItems();
+                //  BlocProvider.of<DatesCubit>(context).fetchDateFromUser();
                   isPressed = false;
                 },
-                child:  Text(S.of(context).sendOrder))
+                child: Text(S.of(context).sendOrder))
       ],
     );
   }

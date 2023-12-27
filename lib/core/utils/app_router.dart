@@ -39,8 +39,7 @@ abstract class AppRouter {
   static const kOrdersView = '/ordersView';
   static const kOrderDetailsFromDate = '/orderDetailsFromDate';
   static const kFavoritesView = '/favoritesView';
-    static const kSalesReportFromDate = '/salesReportFromDate';
-
+  static const kSalesReportFromDate = '/salesReportFromDate';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -149,7 +148,12 @@ abstract class AppRouter {
           child: MedicinesView(classificationName: state.extra as String),
         ),
       ),
-      GoRoute(path: kOrderView, builder: (context, state) => const OrderView()),
+      GoRoute(
+          path: kOrderView,
+          builder: (context, state) => BlocProvider(
+                create: (context) => DatesCubit(getIt<OrderRepoImpl>()),
+                child: const OrderView(),
+              )),
       GoRoute(
         path: kOrdersView,
         builder: (context, state) => BlocProvider(
@@ -186,7 +190,7 @@ abstract class AppRouter {
           child: const FavoraitesView(),
         ),
       ),
- GoRoute(
+      GoRoute(
         path: kSalesReportFromDate,
         builder: (context, state) => MultiBlocProvider(
           providers: [
@@ -197,13 +201,11 @@ abstract class AppRouter {
                     year: int.parse((state.extra as String).split('/')[1])),
             ),
           ],
-          child:  SalesReportView(
-             date: state.extra as String,
-              ),
+          child: SalesReportView(
+            date: state.extra as String,
+          ),
         ),
       ),
-
     ]);
   }
-
 }

@@ -9,7 +9,7 @@ class OrderCubit extends Cubit<OrderState> {
 
   OrderCubit(this.orderRepo, this.cartCubit) : super(OrderInitial());
 
-  void postDelivery() async {
+  Future<void> postDelivery() async {
     emit(OrderLoading());
 
     final result = await orderRepo.postDelivery(cartCubit.orderItems,cartCubit.totalPrice);

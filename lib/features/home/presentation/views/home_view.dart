@@ -17,7 +17,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView>with SingleTickerProviderStateMixin {
   final List<Widget> _pages = [
     const HomeViewBody(),
     const SearchViewBody(),
@@ -25,45 +25,71 @@ class _HomeViewState extends State<HomeView> {
     const SettingsViewBody()
   ];
   int activeIndex = 0;
+  late TabController controller;
+
+   @override
+  void initState() {
+    super.initState();
+    controller = TabController(vsync: this, length: 4);
+  }
+
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: ConvexAppBar(
-        height: 54,
-        backgroundColor: kAppColor,
-        color:  Colors.white,
-        initialActiveIndex: 0,
-        items:  [
-          TabItem(icon: Icons.home, title: S.of(context).home),
-          TabItem(icon: Icons.search, title: S.of(context).search),
-          TabItem(icon: Icons.shopping_cart, title: S.of(context).orders),
-            TabItem(icon: Icons.settings, title: S.of(context).settings),
-        ],
-        onTap: (index) {
+    return WillPopScope(
+      onWillPop: () async {
+        if (activeIndex != 0) {
           setState(() {
-            activeIndex = index;
+            activeIndex = 0;
+            controller.animateTo(0); // Add this line
           });
-        },
+          return false; // Prevent the route from being popped
+        }
+        return true; // Allow the route to be popped
+      },
+      child: Scaffold(
+        bottomNavigationBar: ConvexAppBar(
+          height: 54,
+          backgroundColor: kAppColor,
+          color: Colors.white,
+          initialActiveIndex: 0,
+          controller: controller, // Add this line
+          items: [
+            TabItem(icon: Icons.home, title: S.of(context).home),
+            TabItem(icon: Icons.search, title: S.of(context).search),
+            TabItem(icon: Icons.shopping_cart, title: S.of(context).orders),
+            TabItem(icon: Icons.settings, title: S.of(context).settings),
+          ],
+          onTap: (index) {
+            setState(() {
+              activeIndex = index;
+            });
+          },
+        ),
+        appBar: AppBar(
+          title: Text(S.of(context).pharmazon),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.favorite),
+              onPressed: () {
+                context.push(AppRouter.kFavoritesView);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {
+                context.push(AppRouter.kOrderView);
+              },
+            ),
+          ],
+        ),
+        body: _pages[activeIndex],
       ),
-      appBar: AppBar(
-        title:  Text(S.of(context).pharmazon),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {
-              context.push(AppRouter.kFavoritesView);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              context.push(AppRouter.kOrderView);
-            },
-          ),
-        ],
-      ),
-      // // //  drawer: const HomeDrawrer(),
-      body: _pages[activeIndex],
     );
   }
 }

@@ -25,24 +25,26 @@ class CartCubit extends Cubit<CartState> {
 
     totalPrice = 0;
   }
+void addItem(int quantity, Pharmaceutical orderMedicine) {
+  var existingItem = orderItems
+      .firstWhere((item) => item!.id == orderMedicine.id, orElse: () => null);
 
-  void addItem(int quantity, Pharmaceutical orderMedicine) {
-    var existingItem = orderItems
-        .firstWhere((item) => item!.id == orderMedicine.id, orElse: () => null);
+  if (existingItem != null) {
+    existingItem.orderQuantity = (existingItem.orderQuantity ?? 0) + quantity;
+    totalPrice += orderMedicine.price! * quantity; // Add the price of the added items to the total
 
-    if (existingItem != null) {
-      existingItem.orderQuantity = (existingItem.orderQuantity ?? 0) + quantity;
-      totalPrice += orderMedicine.price! *
-          quantity; // Add the price of the added items to the total
-    } else {
-      orderItems
-          .add(OrderItemModel(id: orderMedicine.id, orderQuantity: quantity));
-      orderMedicines.add(orderMedicine);
-      totalPrice += orderMedicine.price! *
-          quantity; // Add the price of the new item to the total
+    // Check if the quantity is zero after modifying it
+    if (existingItem.orderQuantity == 0) {
+      orderItems.remove(existingItem); // Remove the item from the orderItems list
+      orderMedicines.remove(orderMedicine);
     }
-    emit(CartUpdated(orderItems));
+  } else {
+    orderItems.add(OrderItemModel(id: orderMedicine.id, orderQuantity: quantity));
+    orderMedicines.add(orderMedicine);
+    totalPrice += orderMedicine.price! * quantity; // Add the price of the new item to the total
   }
+  emit(CartUpdated(orderItems));
+}
 
   int getItemQuatity(int id) {
     var existingItem =

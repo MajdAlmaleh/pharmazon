@@ -41,7 +41,7 @@ class SalesReportViewBody extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(double.parse(
-                              (state.saleReportModel.totalPaid).toString())
+                              (state.saleReportModel.totalPaid)!.toStringAsFixed(2))
                           .toString()),
                       const Spacer(),
                     ],

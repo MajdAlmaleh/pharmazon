@@ -26,7 +26,17 @@ class AllDates extends StatelessWidget {
         if (state is DatesSuccess) {
           if (state.dates.isEmpty) {
             return Center(
-                child: Center(child: Text(S.of(context).thereIsNoOrders)));
+              child: Center(
+                child: LiquidPullToRefresh(
+                  color: kAppColor,
+                  onRefresh: () async {
+                    await BlocProvider.of<DatesCubit>(context)
+                        .fetchDateFromUser();
+                  },
+                  child: Text(S.of(context).thereIsNoOrders),
+                ),
+              ),
+            );
           }
 
           return Expanded(
