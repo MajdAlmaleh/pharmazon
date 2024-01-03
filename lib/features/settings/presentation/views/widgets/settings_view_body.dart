@@ -26,7 +26,7 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
       S.of(context).language == 'عربي'
     ];
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -35,19 +35,19 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
             const SizedBox(
               height: 20,
             ),
-            Text(S.of(context).Language),
-            const SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: 3,
-              width: MediaQuery.of(context).size.width * .4,
-              child: Container(
-                color: kAppColor,
-              ),
+            Text(
+              S.of(context).Language,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
+            ),
+            Divider(
+              color: kAppColor,
+              thickness: 2,
+            ),
+            const SizedBox(
+              height: 10,
             ),
             ToggleButtons(
               borderColor: kAppColor,
@@ -55,7 +55,7 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
               borderWidth: 2,
               selectedBorderColor: kAppColor,
               selectedColor: Colors.white,
-              borderRadius: BorderRadius.circular(0),
+              borderRadius: BorderRadius.circular(4),
               onPressed: (int index) {
                 setState(() {
                   for (int i = 0; i < isSelected.length; i++) {
@@ -85,19 +85,19 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
             const SizedBox(
               height: 50,
             ),
-            Text('${S.of(context).logOut}:'),
-            const SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: 3,
-              width: MediaQuery.of(context).size.width * .4,
-              child: Container(
-                color: kAppColor,
-              ),
+            Text(
+              '${S.of(context).logOut}:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
+            ),
+            Divider(
+              color: kAppColor,
+              thickness: 2,
+            ),
+            const SizedBox(
+              height: 10,
             ),
             ListTile(
               onTap: () {
@@ -106,6 +106,7 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
               },
               leading: const Icon(
                 Icons.logout,
+                color: kAppColor,
               ),
               title: Text(
                 S.of(context).logOut,

@@ -10,7 +10,7 @@ class Pharmaceutical extends Equatable {
   final String? manufactureCompany;
   final int? quantityAvailable;
   final String? expireDate;
-  final double? price;
+  final num? price;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final Pivot? pivot;
@@ -40,7 +40,7 @@ class Pharmaceutical extends Equatable {
       manufactureCompany: json['manufacture_company'] as String?,
       quantityAvailable: json['quantity_available'] as int?,
       expireDate: json['expire_date'] as String?,
-      price: json['price'] as double?,
+      price: json['price'] as num?,
       createdAt: json['created_at'] == null
             ? null
             : DateTime.parse(json['created_at'] as String),

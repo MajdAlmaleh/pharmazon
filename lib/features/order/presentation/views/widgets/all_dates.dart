@@ -21,7 +21,15 @@ class AllDates extends StatelessWidget {
           return const CustomLoading();
         }
         if (state is DatesFailure) {
-          return CustomError(errMessage: state.errMessage);
+          return LiquidPullToRefresh(
+            color: kAppColor,
+            onRefresh: () async {
+              await BlocProvider.of<DatesCubit>(context).fetchDateFromUser();
+            },
+            child:  CustomError(errMessage: state.errMessage),
+          );
+
+         
         }
         if (state is DatesSuccess) {
           if (state.dates.isEmpty) {

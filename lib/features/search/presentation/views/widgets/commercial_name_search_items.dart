@@ -15,7 +15,7 @@ class CommercialNameSearchItems extends StatelessWidget {
     return BlocBuilder<CommercialNameSearchCubit, CommercialNameSearchState>(
       builder: (context, state) {
         if (state is CommercialNameSearchLoading) {
-          return const CustomLoading();
+          return const Center(child: CustomLoading());
         }
         if (state is CommercialNameSearchFailure) {
           return CustomError(errMessage: state.errMessage);

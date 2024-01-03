@@ -21,8 +21,14 @@ class TabBarWidget extends StatelessWidget {
         unselectedLabelColor: Colors.grey[700],
         dividerColor: Colors.grey,
         tabs:  [
-          TabItem(label: S.of(context).all),
-          TabItem(label: S.of(context).reports),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TabItem(label: S.of(context).all),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TabItem(label: S.of(context).reports),
+          ),
         ],
       ),
     );

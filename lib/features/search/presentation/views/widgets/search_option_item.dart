@@ -9,15 +9,18 @@ class SearchOptionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: color,
-      child: SizedBox(
-        height: 40,
-        width: 150,
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Card(
+        color: color,
+        child: SizedBox(
+          height: 40,
+          width: 150,
+          child: Center(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 16),
+            ),
           ),
         ),
       ),

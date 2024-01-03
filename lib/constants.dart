@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 //const kBaseUrl = 'http://10.0.2.2:8000/api';
-const kBaseUrl = 'https://74a9-185-177-126-151.ngrok-free.app/api';
+const kBaseUrl = 'https://2351-185-177-126-153.ngrok-free.app/api';
 //for web use the 'http://127.0.0.1:8000/api';
 const kSignIn = 'Login';
 const kAppColor = Color(0xff0f89a2);

@@ -19,7 +19,7 @@
     "quantityUpdatedSuccessfully":"Quantity updated successfully",
     "editTheQuantity":"Edit the quantity",
     "phoneNumberShouldBe10DigitsAndStartWith09":"Phone number should be 10 digits and start with 09",
-    "usernameShouldBeAtLest10Characters":"Username should be at least 10 characters",
+    "usernameShouldBeAtLest10Characters":"Username should be at least 4 characters",
     "passwordShouldBeAtLest8Characters":"Password should be at least 8 characters",
     "signIn":"Sign In",
     "signUp":"Sign Up",
