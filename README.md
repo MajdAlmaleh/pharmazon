@@ -22,9 +22,24 @@ Pharmazon is a Flutter project designed to create a mobile application for Andro
 - **Reports:**
   - Users can check the payments that had been done in a certain month.  
 
+## Additional
+
+There is a web admin app to handle the orders and its states.
+
 ## Screenshots
 
-Insert relevant screenshots showcasing the application.
+![Screenshot 1](screenshots/photo_1_2024-01-10_14-19-25.jpg)
+![Screenshot 2](screenshots/photo_2_2024-01-10_14-19-25.jpg)
+![Screenshot 3](screenshots/photo_3_2024-01-10_14-19-25.jpg)
+![Screenshot 4](screenshots/photo_4_2024-01-10_14-19-25.jpg)
+![Screenshot 5](screenshots/photo_5_2024-01-10_14-19-25.jpg)
+![Screenshot 6](screenshots/photo_6_2024-01-10_14-19-25.jpg)
+![Screenshot 7](screenshots/photo_7_2024-01-10_14-19-25.jpg)
+![Screenshot 8](screenshots/photo_8_2024-01-10_14-19-25.jpg)
+![Screenshot 9](screenshots/photo_9_2024-01-10_14-19-25.jpg)
+![Screenshot 10](screenshots/photo_10_2024-01-10_14-19-25.jpg)
+![Screenshot 11](screenshots/photo_11_2024-01-10_14-19-25.jpg)
+
 
 ## License
 
